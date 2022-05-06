@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<div class="twoDives">
+			<div class="logo">
+				<img class="ig" src="images/HDpackman.jpg" />
+			</div>
+			<div class = "logo">
+				<h3> Tal Ben Hamou & Ido Cohen</h3>
+			</div>
+		</div>
+		<div id="menu">
+			<ul class="menuNav">
+			  <div class="ph">
+				<li class="menuLink"><button onclick="openHome()" href="#Home">HOME</button></li>
+			  </div>
+			  <div class="ph">
+				<li class="menuLink"><button onclick="registerpage()" href="#Register">REGISTER</button></li>
+			  </div>
+			  <div class="ph">
+				<li class="menuLink"><button href="#Login">LOGIN</button></li>
+			  </div>
+			  <div class="ph">
+				<li class="menuLink"><button href="#About">ABOUT</button></li>
+			  </div>	  
+			  </div>
+			</ul>
+		  </div>
 	</head>
 
 	<body>
+		<div id="home_div">
+			<div class="homelogo_div_img">
+				<img class="homelogo" src="images/output-onlinegiftools.gif"/>
+			</div>	
+			<div class="homelogo_div">
+				<button id="login_button">LOGIN</button>
+				<button id="register_button">REGISTER</button>
+			</div>
+		</div>
+		
+		<div id="register_div">
+			<div>
+				<h3>REGISTER</h3>
+			</div>
+			<div id="username">Username:
+				<input id="username_input" type="text" value="Enter user name">
+			</div>
+			<div id="password">Password:
+				<input id="password_input" type="text" value="Enter Password">
+			</div>
+			<div id="fullname">full Name:
+				<input id="fullname_input" type="text" value="Enter Full name">
+			</div>
+			<div id="email">E-mail:
+				<input id="email_input" type="text" value="Enter E-mail">
+			</div>
+			<div id="birthday">Birth Date:
+				<input id="birthday_input" type="date" value="01/01/1990">
+			</div>
+		</div>
+
+
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
@@ -16,6 +74,14 @@
 		</div>
 		<div id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
+		</div>
+
+		<div>
+			<br>
+			<br>
+			<br>
+		
+			<h1>CONTACT</h1>
 		</div>
 	</body>
 </html>

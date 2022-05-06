@@ -9,7 +9,16 @@ var interval;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
-	Start();
+	// Start();
+	// openHome();
+	var time = document.getElementById("time");
+	var score = document.getElementById("score");
+	var game = document.getElementById("game");
+	time.style.display = "none";
+	score.style.display = "none";
+	game.style.display = "none";
+	var registerpage = document.getElementById("register_div");
+	registerpage.style.display = "none";
 });
 
 function Start() {
@@ -169,4 +178,24 @@ function UpdatePosition() {
 	} else {
 		Draw();
 	}
+}
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("menu").style.top = "0";
+  } else {
+    document.getElementById("menu").style.top = "-50px";
+  }
+}
+
+function openHome(){
+	document.getElementById("home_div").style.display = "block";
+	document.getElementById("register_div").style.display = "none";
+}
+
+function registerpage(){
+	document.getElementById("home_div").style.display = "none";
+	document.getElementById("register_div").style.display = "block";
 }

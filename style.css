@@ -1,0 +1,122 @@
+html{
+	margin: 0%;
+	padding: 0%;
+	/* background: border-box rgb(40, 41, 40); */
+	/* width: auto!important; overflow-x: hidden!important */
+    background-image: url("images/background-body3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+body{
+    background-color: #171717;
+    margin: 23px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#menu 
+{
+	z-index: 100;
+	position:sticky;
+	width: 100%;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: spac-around;
+	font-size: 1.08em;
+    transition: top ;
+}
+.menuNav {
+	display: flex;
+	justify-content: space-around;
+	width: 90%;
+    padding: 10%;
+    margin: 15%;
+}
+.menuLink {
+	list-style: none;
+	margin: 0;
+	font-style: italic;
+}
+.menuLink button {
+	color: rgb(255, 255, 255);
+    background-color: #232323;
+	text-decoration: none;
+	font-size: 1.30em;
+	margin: 10%;
+    text-align: center;
+	box-shadow: 0px 0px 10px currentcolor;
+  	border: 5px solid ;
+  	padding: 15px;
+	overflow: hidden;
+	font-family:Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 1px #ffffff, 0 0 25px #ffffff, 0 0 5px #000000;
+	font-size: 140%;
+}
+.menuLink :hover{
+    background-color: white;
+    color: black;
+}
+.ig{
+    /* padding: 1%;
+    margin: 1%; */
+    align-items: center;
+    width: 900px ;
+    height: 450px;
+
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 2%;
+
+}
+.homelogo_div , .homelogo_div_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#home_div{
+    margin-top: 100px;
+}
+
+
+h3{
+    color: rgb(222, 225, 225);
+    text-shadow: 0px 0px 0px #ffffff, 0 0 2px #ffffff, 0 0 1px #000000;
+    font-size: x-large;
+}
+.twoDives{
+    margin: 0px;
+    background: #000000;
+    margin-top: 0%;
+    
+}
+.homelogo_div button {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+    background-color: #232323;
+	font-size: 1.30em;
+	margin: 10%;
+    text-align: center;
+	box-shadow: 0px 0px 10px ;
+  	border: 5px solid ;
+  	padding: 15px;
+	overflow: hidden;
+	font-family:Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 2px #ffffff, 0 0 25px #ffffff, 0 0 5px #000000;
+	font-size: 140%;
+}
+.homelogo_div :hover{
+    background-color: white;
+    color: black;
+}
+#login_button{
+    margin-right: 30px;
+}
+#register_button{
+    margin-left: 30px;
+}
