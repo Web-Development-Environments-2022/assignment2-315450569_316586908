@@ -6,11 +6,12 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var users = new Array();
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
 	// Start();
-	// openHome();
+	openHome();
 	var time = document.getElementById("time");
 	var score = document.getElementById("score");
 	var game = document.getElementById("game");
@@ -19,6 +20,7 @@ $(document).ready(function() {
 	game.style.display = "none";
 	var registerpage = document.getElementById("register_div");
 	registerpage.style.display = "none";
+	users[0] = ["k","k"];
 });
 
 function Start() {
@@ -191,11 +193,92 @@ function scrollFunction() {
 }
 
 function openHome(){
-	document.getElementById("home_div").style.display = "block";
 	document.getElementById("register_div").style.display = "none";
+	document.getElementById("login_page").style.display = "none";
+	document.getElementById("home_div").style.display = "block";
+	
+
 }
 
 function registerpage(){
+	clear_submition();
+	document.getElementById("login_page").style.display = "none";
 	document.getElementById("home_div").style.display = "none";
 	document.getElementById("register_div").style.display = "block";
+
 }
+
+function clear_submition(){
+	document.getElementById("username_input").value = "Enter user name";
+	document.getElementById("password_input").value = "Enter Password";
+	document.getElementById("fullname_input").value = "Enter Full name";
+	document.getElementById("email_input").value = "Enter E-mail";
+	document.getElementById("birthday_input").value = "1990-01-01";
+}
+
+function submit(){
+	const regExp_letter = /.*[a-zA-Z].*/;
+	const regExp_number = /.*[0-9].*/;
+	const regExp_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+	if ($("#username_input").val() == "Enter user name" || $("#username_input").val() == '' ||
+	$("#password_input").val() == "Enter Password" || $("#password_input").val() == '' ||
+	$("#fullname_input").val() == "Enter Full name" || $("#fullname_input").val() == '' ||
+	$("#email_input").val() == "Enter E-mail" || $("#email_input").val() == '')
+	{
+		window.alert("One or More details was not entered.");
+		return;
+	}
+
+	if ($("#password_input").val().length < 6 || !regExp_letter.test($("#password_input").val()) || !regExp_number.test($("#password_input").val()))
+	{
+		window.alert("the password is in correct. the password should contain at least one letter and at least one number and the password must be at least 6 characters.");
+		return;
+	}
+
+	if (regExp_number.test($("#fullname_input").val()))
+	{
+		window.alert("the full name shouldn't contain numbers.");
+		return;
+	}
+
+	if (!regExp_email.test($("#email_input").val()))
+	{
+		window.alert("The E-mail is not vaild.");
+		return;
+	}
+
+	for (i = 0 ; i < users.length ; i++){
+		if (users[i][0] == $("#username_input").val()){
+			window.alert("this username is already in use");
+			return;
+		}
+	}
+
+	users.push([$("#username_input").val(), $("#password_input").val()]);
+	
+	window.alert("submition succesful");
+}
+
+function loginpage(){
+	document.getElementById("home_div").style.display = "none";
+	document.getElementById("register_div").style.display = "none";
+	document.getElementById("login_page").style.display = "block";
+
+}
+
+function login(){
+	for (i = 0; i < users.length ; i++){
+		if (users[i][0] == $("#username_login_input").val()){
+			if (users[i][1] == $("#password_login_input").val())
+				settingpage();
+				return;
+		}
+	}
+
+	window.alert("this user is not exist.");
+}
+
+function settingpage(){
+	window.alert("SETINGPAGE!");
+}
+

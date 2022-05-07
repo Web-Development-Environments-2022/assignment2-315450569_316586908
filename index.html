@@ -15,16 +15,16 @@
 		<div id="menu">
 			<ul class="menuNav">
 			  <div class="ph">
-				<li class="menuLink"><button onclick="openHome()" href="#Home">HOME</button></li>
+				<li class="menuLink"><button style="margin-top: 7%;" onclick="openHome()" href="#Home">HOME</button></li>
+			  </div>
+			  <div class="ph" >
+				<li class="menuLink"><button style="margin-top: 5%;" onclick="registerpage()" href="#Register">REGISTER</button></li>
 			  </div>
 			  <div class="ph">
-				<li class="menuLink"><button onclick="registerpage()" href="#Register">REGISTER</button></li>
+				<li class="menuLink"><button style="margin-top: 7%;" onclick="loginpage()">LOGIN</button></li>
 			  </div>
 			  <div class="ph">
-				<li class="menuLink"><button href="#Login">LOGIN</button></li>
-			  </div>
-			  <div class="ph">
-				<li class="menuLink"><button href="#About">ABOUT</button></li>
+				<li class="menuLink"><button style="margin-top: 7%;" href="#About">ABOUT</button></li>
 			  </div>	  
 			  </div>
 			</ul>
@@ -37,32 +37,67 @@
 				<img class="homelogo" src="images/output-onlinegiftools.gif"/>
 			</div>	
 			<div class="homelogo_div">
-				<button id="login_button">LOGIN</button>
-				<button id="register_button">REGISTER</button>
+				<button id="login_button" onclick="loginpage()">LOGIN</button>
+				<button id="register_button" onclick="registerpage()">REGISTER</button>
 			</div>
 		</div>
 		
-		<div id="register_div">
+		<div id="register_div" class="register_div">
 			<div>
+				<center>
 				<h3>REGISTER</h3>
+				</center>
 			</div>
-			<div id="username">Username:
-				<input id="username_input" type="text" value="Enter user name">
+
+			<table class="register_list" style="list-style-type: none;" align="center">
+				
+				<tr id="username"><th>Username:</th>
+					<th><input onfocus="this.value =''"  id="username_input"  type="text" value="Enter user name"></th>
+				</tr>
+				<tr id="password"><th>Password:</th>
+					<th><input onfocus="this.value =''" id="password_input"  type="text" value="Enter Password"></th>
+				</tr>
+				<tr id="fullname"><th>full Name:</th>
+					<th><input onfocus="this.value =''" id="fullname_input" type="text" value="Enter Full name"></th>
+				</tr>
+				<tr id="email"><th>E-mail:</th>
+					<th><input onfocus="this.value =''" id="email_input"  type="text" value="Enter E-mail"></th>
+				</tr>
+				<tr id="birthday"><th>Birth Date:</th>
+					<th><input onfocus="this.value =''" id="birthday_input"  type="date" style="height: 30px; width: 165px;" value="1990-01-01"></th>
+				</tr>
+			</table>
+			<div class="register_buttons">
+				<div class="clear_button">
+				<button id="clear_button" onclick="clear_submition()" >CLEAR</button>
 			</div>
-			<div id="password">Password:
-				<input id="password_input" type="text" value="Enter Password">
+			<div class="submit_button">
+				<button id="submit_button" onclick="submit()">SUBMIT</button>
 			</div>
-			<div id="fullname">full Name:
-				<input id="fullname_input" type="text" value="Enter Full name">
-			</div>
-			<div id="email">E-mail:
-				<input id="email_input" type="text" value="Enter E-mail">
-			</div>
-			<div id="birthday">Birth Date:
-				<input id="birthday_input" type="date" value="01/01/1990">
 			</div>
 		</div>
 
+		<div id="login_page">
+			<div>
+				<center>
+				<h3>LOGIN</h3>
+				</center>
+			</div>
+			<table class="login_table" style="list-style-type: none;" align="center">
+				<tr id="username_login"><th>Username:</th>
+					<th><input onfocus="this.value =''"  id="username_login_input"  type="text" value="Enter user name"></th>
+				</tr>
+				<tr id="password_login"><th>Password:</th>
+					<th><input onfocus="this.value =''" id="password_login_input"  type="text" value="Enter Password"></th>
+				</tr>
+			</table>
+			<center>
+				<div class="login_button_div">
+					<button id="login_page_button" onclick="login()">LOGIN</button>
+				</div>
+			</center>
+
+		</div>
 
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
