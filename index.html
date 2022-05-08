@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script src="https://kit.fontawesome.com/dd78217d30.js" crossorigin="anonymous"></script>
 		<div class="twoDives">
 			<div class="logo">
 				<img class="ig" src="images/HDpackman.jpg" />
@@ -55,7 +56,7 @@
 					<th><input onfocus="this.value =''"  id="username_input"  type="text" value="Enter user name"></th>
 				</tr>
 				<tr id="password"><th>Password:</th>
-					<th><input onfocus="this.value =''" id="password_input"  type="text" value="Enter Password"></th>
+					<th><input type="password" onfocus="this.value =''" id="password_input"  type="text" value="Enter Password"></th>
 				</tr>
 				<tr id="fullname"><th>full Name:</th>
 					<th><input onfocus="this.value =''" id="fullname_input" type="text" value="Enter Full name"></th>
@@ -97,6 +98,38 @@
 				</div>
 			</center>
 
+		</div>
+		<div id="setting_page">
+			<div>
+				<center>
+				<h3>GAME SETTING</h3>
+				<br>
+				<h4>by clicking on arrow, you can choose the key you want.</h4>
+				</center>
+			</div>
+
+			<table class="arrows">
+				<tr>
+					<th> </th>
+					<th class="arrowup"><button onclick="chooseUpKeyBoard()"><i style='font-size:50px' class='fas'>&#xf077;</i></button></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th class="arrowleft"><button onclick="chooseLeftKeyBoard()"><i style='font-size:50px' class='fas'>&#xf053;</i></button></th>
+					<th></th>
+					<th class="arrowright"><button onclick="chooseRightKeyBoard()"><i style='font-size:50px' class='fas'>&#xf054;</i></button></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th class="arrowdown"><button onclick="chooseDownKeyBoard()"><i style='font-size:50px' class='fas'>&#xf078;</i></button></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th><div id="editKey"><input id="inputKeyBoard" value="Please enter your key..." onfocus="this.value =''"></div><div id="saveMessage"></div></th>
+					<th></th>
+				</tr>
+			</table>
 		</div>
 
 		<div id="score">

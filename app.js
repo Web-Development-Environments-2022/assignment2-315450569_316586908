@@ -7,6 +7,11 @@ var start_time;
 var time_elapsed;
 var interval;
 var users = new Array();
+var upMove;
+var downMove;
+var leftMove;
+var rightMove;
+var node;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -94,16 +99,17 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[upMove]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+
+	if (keysDown[downMove]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[leftMove]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[rightMove]) {
 		return 4;
 	}
 }
@@ -195,6 +201,7 @@ function scrollFunction() {
 function openHome(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("login_page").style.display = "none";
+	document.getElementById("setting_page").style.display = "none";
 	document.getElementById("home_div").style.display = "block";
 	
 
@@ -204,6 +211,7 @@ function registerpage(){
 	clear_submition();
 	document.getElementById("login_page").style.display = "none";
 	document.getElementById("home_div").style.display = "none";
+	document.getElementById("setting_page").style.display = "none";
 	document.getElementById("register_div").style.display = "block";
 
 }
@@ -262,6 +270,7 @@ function submit(){
 function loginpage(){
 	document.getElementById("home_div").style.display = "none";
 	document.getElementById("register_div").style.display = "none";
+	document.getElementById("setting_page").style.display = "none";
 	document.getElementById("login_page").style.display = "block";
 
 }
@@ -279,6 +288,57 @@ function login(){
 }
 
 function settingpage(){
-	window.alert("SETINGPAGE!");
+	document.getElementById("login_page").style.display = "none";
+	document.getElementById("home_div").style.display = "none";
+	document.getElementById("register_div").style.display = "none";
+	document.getElementById("editKey").style.display = "none";
+	document.getElementById("saveMessage").style.display = "none";
+	document.getElementById("setting_page").style.display = "block";
+}
+
+function chooseUpKeyBoard(){
+	document.getElementById("editKey").style.display = "block";
+	node = document.createElement("h4");
+	document.getElementById("saveMessage").appendChild(node);
+	document.getElementById("inputKeyBoard").onkeydown = editKeyUp;
+}
+
+function editKeyUp(e){
+	document.getElementById("saveMessage").removeChild(node);
+	upMove = e.keyCode
+	node = document.createElement("h4");
+	const textnode = document.createTextNode("The key "+ String.fromCharCode(upMove) + " saved.");
+	node.appendChild(textnode);
+	document.getElementById("saveMessage").appendChild(node);
+	document.getElementById("saveMessage").style.display = "block";
+	$("#inputKeyBoard").val('');
+
+}
+
+function chooseDownKeyBoard(){
+	document.getElementById("editKey").style.display = "block";
+	document.getElementById("inputKeyBoard").onkeydown = editKeyDown;
+}
+
+function editKeyDown(e){
+	downMove = e.keyCode
+	window.alert(downMove);
+}
+function chooseLeftKeyBoard(){
+	document.getElementById("editKey").style.display = "block";
+	document.getElementById("inputKeyBoard").onkeydown = editKeyLeft;
+}
+
+function editKeyLeft(e){
+	leftMove = e.keyCode
+}
+
+function chooseRightKeyBoard(){
+	document.getElementById("editKey").style.display = "block";
+	document.getElementById("inputKeyBoard").onkeydown = editKeyRight;
+}
+
+function editKeyRight(e){
+	rightMove = e.keyCode
 }
 
