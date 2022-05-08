@@ -12,6 +12,9 @@ var downMove;
 var leftMove;
 var rightMove;
 var node;
+var tmpnode;
+var tmpnode_2;
+var textnode;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -26,6 +29,12 @@ $(document).ready(function() {
 	var registerpage = document.getElementById("register_div");
 	registerpage.style.display = "none";
 	users[0] = ["k","k"];
+
+	//default values//
+	upMove = 38;
+	downMove = 40;
+	leftMove = 37;
+	rightMove = 39;
 });
 
 function Start() {
@@ -296,49 +305,81 @@ function settingpage(){
 	document.getElementById("setting_page").style.display = "block";
 }
 
-function chooseUpKeyBoard(){
+function chooseKeyBoard(e, text){
+	$("#inputKeyBoard").val("Please enter your key...");
+	removeAllChildren(document.getElementById("saveMessage"));
 	document.getElementById("editKey").style.display = "block";
+	switch (text){
+		case 'up':
+			document.getElementById("inputKeyBoard").onkeydown = editKeyUp;
+			tmp_nodes();
+			break;
+		case 'down':
+			document.getElementById("inputKeyBoard").onkeydown = editKeyDown;
+			tmp_nodes();
+			break;
+		case 'left':
+			document.getElementById("inputKeyBoard").onkeydown = editKeyLeft;
+			tmp_nodes();
+			break;
+		case 'right':
+			document.getElementById("inputKeyBoard").onkeydown = editKeyRight;
+			tmp_nodes();
+			break;
+	}
+}
+
+function tmp_nodes(){
 	node = document.createElement("h4");
+	node.setAttribute("id", "node_h4");
+	tmpnode = document.createElement("p");
+	tmpnode.setAttribute("id", "tmpnode");
+	node.appendChild(tmpnode);
 	document.getElementById("saveMessage").appendChild(node);
-	document.getElementById("inputKeyBoard").onkeydown = editKeyUp;
 }
 
 function editKeyUp(e){
-	document.getElementById("saveMessage").removeChild(node);
 	upMove = e.keyCode
-	node = document.createElement("h4");
-	const textnode = document.createTextNode("The key "+ String.fromCharCode(upMove) + " saved.");
-	node.appendChild(textnode);
+	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(upMove) + " saved.");
+	node.replaceChild(tmpnode_2,tmpnode);
+	tmpnode = tmpnode_2;
 	document.getElementById("saveMessage").appendChild(node);
 	document.getElementById("saveMessage").style.display = "block";
 	$("#inputKeyBoard").val('');
-
-}
-
-function chooseDownKeyBoard(){
-	document.getElementById("editKey").style.display = "block";
-	document.getElementById("inputKeyBoard").onkeydown = editKeyDown;
 }
 
 function editKeyDown(e){
 	downMove = e.keyCode
-	window.alert(downMove);
-}
-function chooseLeftKeyBoard(){
-	document.getElementById("editKey").style.display = "block";
-	document.getElementById("inputKeyBoard").onkeydown = editKeyLeft;
+	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(downMove) + " saved.");
+	node.replaceChild(tmpnode_2,tmpnode);
+	tmpnode = tmpnode_2;
+	document.getElementById("saveMessage").appendChild(node);
+	document.getElementById("saveMessage").style.display = "block";
+	$("#inputKeyBoard").val('');
 }
 
 function editKeyLeft(e){
-	leftMove = e.keyCode
-}
-
-function chooseRightKeyBoard(){
-	document.getElementById("editKey").style.display = "block";
-	document.getElementById("inputKeyBoard").onkeydown = editKeyRight;
+	leftMove = e.keyCode;
+	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(leftMove) + " saved.");
+	node.replaceChild(tmpnode_2,tmpnode);
+	tmpnode = tmpnode_2;
+	document.getElementById("saveMessage").appendChild(node);
+	document.getElementById("saveMessage").style.display = "block";
+	$("#inputKeyBoard").val('');
 }
 
 function editKeyRight(e){
-	rightMove = e.keyCode
+	rightMove = e.keyCode;
+	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(rightMove) + " saved.");
+	node.replaceChild(tmpnode_2,tmpnode);
+	tmpnode = tmpnode_2;
+	document.getElementById("saveMessage").appendChild(node);
+	document.getElementById("saveMessage").style.display = "block";
+	$("#inputKeyBoard").val('');
 }
 
+function removeAllChildren(element) {
+	while (element.firstChild) {
+	  element.removeChild(element.firstChild)
+	}
+  }

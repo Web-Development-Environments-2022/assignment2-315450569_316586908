@@ -102,7 +102,7 @@
 		<div id="setting_page">
 			<div>
 				<center>
-				<h3>GAME SETTING</h3>
+				<h3>GAME SETTINGS</h3>
 				<br>
 				<h4>by clicking on arrow, you can choose the key you want.</h4>
 				</center>
@@ -111,17 +111,17 @@
 			<table class="arrows">
 				<tr>
 					<th> </th>
-					<th class="arrowup"><button onclick="chooseUpKeyBoard()"><i style='font-size:50px' class='fas'>&#xf077;</i></button></th>
+					<th class="arrowup"><button onclick="chooseKeyBoard(this, 'up')"><i style='font-size:50px' class='fas'>&#xf077;</i></button></th>
 					<th></th>
 				</tr>
 				<tr>
-					<th class="arrowleft"><button onclick="chooseLeftKeyBoard()"><i style='font-size:50px' class='fas'>&#xf053;</i></button></th>
+					<th class="arrowleft"><button onclick="chooseKeyBoard(this, 'left')"><i style='font-size:50px' class='fas'>&#xf053;</i></button></th>
 					<th></th>
-					<th class="arrowright"><button onclick="chooseRightKeyBoard()"><i style='font-size:50px' class='fas'>&#xf054;</i></button></th>
+					<th class="arrowright"><button onclick="chooseKeyBoard(this, 'right')"><i style='font-size:50px' class='fas'>&#xf054;</i></button></th>
 				</tr>
 				<tr>
 					<th></th>
-					<th class="arrowdown"><button onclick="chooseDownKeyBoard()"><i style='font-size:50px' class='fas'>&#xf078;</i></button></th>
+					<th class="arrowdown"><button onclick="chooseKeyBoard(this, 'down')"><i style='font-size:50px' class='fas'>&#xf078;</i></button></th>
 					<th></th>
 				</tr>
 				<tr>
@@ -130,6 +130,8 @@
 					<th></th>
 				</tr>
 			</table>
+
+			
 		</div>
 
 		<div id="score">
