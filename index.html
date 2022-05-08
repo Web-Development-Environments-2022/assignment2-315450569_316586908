@@ -25,7 +25,7 @@
 				<li class="menuLink"><button style="margin-top: 7%;" onclick="loginpage()">LOGIN</button></li>
 			  </div>
 			  <div class="ph">
-				<li class="menuLink"><button style="margin-top: 7%;" href="#About">ABOUT</button></li>
+				<li class="menuLink"><button style="margin-top: 7%;" onclick="aboutPage()" href="#About">ABOUT</button></li>
 			  </div>	  
 			  </div>
 			</ul>
@@ -89,7 +89,7 @@
 					<th><input onfocus="this.value =''"  id="username_login_input"  type="text" value="Enter user name"></th>
 				</tr>
 				<tr id="password_login"><th>Password:</th>
-					<th><input onfocus="this.value =''" id="password_login_input"  type="text" value="Enter Password"></th>
+					<th><input onfocus="this.value =''" id="password_login_input"  type="password" value="Enter Password"></th>
 				</tr>
 			</table>
 			<center>
@@ -104,7 +104,7 @@
 				<center>
 				<h3>GAME SETTINGS</h3>
 				<br>
-				<h4>by clicking on arrow, you can choose the key you want.</h4>
+				<h4>by clicking on each arrow, you can choose the key you want.</h4>
 				</center>
 			</div>
 
@@ -130,9 +130,125 @@
 					<th></th>
 				</tr>
 			</table>
+			<div id="details">
+				<center>
+				<h4 class="numberOfballs">Please choose number of balls:(50-90)</h4>
+				<input id="inputScaleBalls" type="range" min="50" max="90" value="70" onchange="chooseNumberBalls(this.value)">                             
+				<output id="numberballs" style="color: white; " ></output>
+				</center>
+			</div>
 
-			
+			<br> 
+
+			<div id="chooseColor" >
+				<center>
+				<h4>Please choose ball color:</h4>
+
+				<div >
+				  <div style="width: 35%;">
+					<h4>5 Points</h4>
+					<input
+					  type="color"
+					  id="ball5"
+					  onchange="clickColor(0, -1, -1, 5)"
+					  value="#FF0000"
+					  style="width: 35%; height: 30px;"
+					/>
+				  </div>
+	
+				  <div style="width: 35%;">
+					<h4>15 Points</h4>
+					<input
+					  type="color"
+					  id="ball15"
+					  onchange="clickColor(0, -1, -1, 5)"
+					  value="#0000FF"
+					  style="width: 35%; height: 30px;"
+					/>
+				  </div>
+				  <div style="width: 35%;">
+					<h4>25 Points</h4>
+					<input
+					  type="color"
+					  id="ball25"
+					  onchange="clickColor(0, -1, -1, 5)"
+					  value="#FFFF00"
+					  style="width: 35%; height: 30px;"
+					/>
+				  </div>
+				</div>
+				</center>
+			  </div>
+
+			  <div id="gameTime">
+				<center>
+				<h4 class="time">Please choose game time:(60-180 Second)</h4>
+				<input id="inputTimeGame" type="range" min="60" max="180" value="100" onchange="chooseTimeGame(this.value)">                             
+				<output id="timeGame" style="color: white; " ></output>
+				</center>
+			  </div>
+
+			  <div id="Ghost">
+				<center>
+				<h4>Please choose number of Ghosts:(1-4)</h4>
+				<input id="inputGhost" type="range" min="1" max="4" value="2" onchange="chooseGhosts(this.value)">                             
+				<output id="ghosts" style="color: white;" ></output>
+				</center>
+			</div>
+			<div class="submit_button_details">
+				<button id="submit_button_details" onclick="submitDetails()">SUBMIT</button>
+			</div>
 		</div>
+		<dialog id="about_page" class="aboutClass" >
+			<span class="close topright" onclick="document.getElementById('about_page').style.display='none'">&times;</span>
+			<div class="aboutClass-inner">
+				<center>
+				<h1 class="headline">About Us Game</h1>
+				</center>
+				<div class="aboutSec">
+					<p style="font-size:large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" >
+						<h2 style="font-style:italic;">Pacman game</h2>The user can play and change the settings of number monsters, ball color, time and more as you wish.<br>
+						We used jQUERY to identify details of new users to the game.
+						We used the regex expression to make sure the fields were entered correctly.<br>
+						The first assignment of building the site, helped us to do this assignment in a better way.
+						We ran into design issues and it took us too long, but we managed to meet the goals we set.</p>
+				</div>
+				<h1 class="headline" style="text-align:center">Our Team</h1>
+
+				<div class="div0">
+					<div class="div1">
+						<div class="div2">
+							<img id="tal" src="images/tal.jpeg" alt="tal" >
+							<div class="div3">
+								<center>
+							<h2>Tal Ben Hamou</h2>
+							<p class="id">315450569</p>
+							<p>Tal 27 years old, a third year student.</p>
+							<p>tal.ben.hamou@post.bgu.ac.il</p>
+							</center>
+							</div>
+						</div>
+					</div>
+				
+					<div class="div1">
+						<div class="div2">
+							<img id="ido" src="images/ido.jpeg" alt="ido">
+							<div class="div3">
+							<center>
+							<h2>Ido Cohen</h2>
+							<p class="id">316586908</p>
+							<p>Ido 26 years old, a third year student.</p>
+							<p>ido3@post.bgu.ac.il</p>
+							</center>
+							</div>
+						</div>
+					</div>
+				</div>
+		</dialog>
+
+		<br>
+		<br>
+		<br>
 
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
@@ -146,12 +262,12 @@
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
 
-		<div>
+		<!-- <div>
 			<br>
 			<br>
 			<br>
 		
 			<h1>CONTACT</h1>
-		</div>
+		</div> -->
 	</body>
 </html>

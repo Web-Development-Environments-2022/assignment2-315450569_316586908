@@ -14,7 +14,6 @@ body{
 
 #menu 
 {
-	z-index: 100;
 	position:sticky;
 	width: 100%;
 	height: 150px;
@@ -188,6 +187,37 @@ input{
     background-color: white;
     color: rgb(0, 77, 0);
 }
+
+
+
+.submit_button_details button {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+    background-color: #232323;
+	font-size: 1.30em;
+	margin: 10%;
+    text-align: center;
+	box-shadow: 0px 0px 10px ;
+  	border: 5px solid ;
+  	padding: 15px;
+	overflow: hidden;
+	font-family:Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 2px #ffffff, 0 0 25px #ffffff, 0 0 5px #000000;
+	font-size: 140%;
+    margin-top: 3%;
+}
+.submit_button_details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submit_button_details :hover{
+    background-color: white;
+    color: rgb(0, 77, 0);
+}
+
+
+
 .clear_button :hover{
     background-color: white;
     color: rgb(107, 0, 0);
@@ -216,7 +246,6 @@ input{
     border-spacing: 0px;
     font-size: x-large;
     color: white;
-    padding: 34px 34px 34px 34px;
 
 }
 
@@ -224,4 +253,118 @@ h4{
     color: white;
     font-size: large;
     font-family: 'Times New Roman', Times, serif;
+}
+.numberOfBalls{
+    color: white;    
+}
+
+.details{
+   
+}
+
+
+#ball5,#ball15,#ball25{
+    border: none;
+    background-color: #000000;
+    color: white;
+    height: 30px;
+    
+}
+
+.div0 {
+    background-color: #232323;
+}
+
+.div1 {
+    float: left;
+    width: 48%;
+    margin-bottom: 16px;
+    padding: 11px;
+}
+
+.div2 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 4px;
+}
+
+
+.aboutSec {
+    padding: 55px;
+    text-align: center;
+    background-color: #232323;
+    color: white;
+}
+
+.div3 {
+    padding: 0 10px;
+    color: aliceblue;
+    background-color: #232323;
+}
+
+.div3::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.id {
+    color: rgb(114, 144, 176);
+}
+#ido, #tal {
+    float: left;
+    width:  665px;
+    height: 600px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    overflow: auto;
+}
+.headline{
+    color: rgb(255, 79, 79);
+}
+
+#about_page{
+    display: none; 
+    position: fixed; 
+    z-index: 3; 
+    padding-top: 10px; 
+    left: 0;
+    top: 20px;
+    width: 70%; 
+    height: 70%; 
+    max-width: 70%;
+    max-height: 70%;
+    overflow: auto; 
+    background-color: rgb(243, 243, 243); 
+    background-color: rgba(118, 137, 127, 0.4); 
+}
+.aboutClass-inner {
+    position: relative;
+    margin: auto;
+    border: 0px solid #888;
+    width: 100%;
+    max-width: 100%;
+  }
+
+.close{
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+      
+.topright {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgb(255, 79, 79);
+    border-radius: 50px;
+
 }

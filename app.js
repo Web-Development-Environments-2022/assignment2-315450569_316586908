@@ -20,6 +20,8 @@ $(document).ready(function() {
 	context = canvas.getContext("2d");
 	// Start();
 	openHome();
+
+
 	var time = document.getElementById("time");
 	var score = document.getElementById("score");
 	var game = document.getElementById("game");
@@ -29,6 +31,12 @@ $(document).ready(function() {
 	var registerpage = document.getElementById("register_div");
 	registerpage.style.display = "none";
 	users[0] = ["k","k"];
+
+	// //number of balls scala
+	// var scale = document.getElementById("balls");
+	// var numberOfBalls = document.getElementById("numberballs");
+	// numberOfBalls.innerHTML = scale.value;
+
 
 	//default values//
 	upMove = 38;
@@ -211,6 +219,7 @@ function openHome(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("login_page").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
+	document.getElementById("about_page").style.display = "none"
 	document.getElementById("home_div").style.display = "block";
 	
 
@@ -221,6 +230,7 @@ function registerpage(){
 	document.getElementById("login_page").style.display = "none";
 	document.getElementById("home_div").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
+	document.getElementById("about_page").style.display = "none"
 	document.getElementById("register_div").style.display = "block";
 
 }
@@ -280,6 +290,7 @@ function loginpage(){
 	document.getElementById("home_div").style.display = "none";
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
+	document.getElementById("about_page").style.display = "none"
 	document.getElementById("login_page").style.display = "block";
 
 }
@@ -302,6 +313,7 @@ function settingpage(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("editKey").style.display = "none";
 	document.getElementById("saveMessage").style.display = "none";
+	document.getElementById("about_page").style.display = "none"
 	document.getElementById("setting_page").style.display = "block";
 }
 
@@ -383,3 +395,77 @@ function removeAllChildren(element) {
 	  element.removeChild(element.firstChild)
 	}
   }
+function chooseNumberBalls(val) {
+
+	document.getElementById("numberballs").innerHTML = val;  
+	document.getElementById("numberballs").display = "block";
+	
+}
+
+function chooseTimeGame(val) {
+
+	document.getElementById("timeGame").innerHTML = val;  
+	document.getElementById("timeGame").display = "block";
+	
+}
+
+function chooseGhosts(val) {
+
+	document.getElementById("ghosts").innerHTML = val;  
+	document.getElementById("ghosts").display = "block";
+	
+}
+
+function submitDetails(){
+	//save here all elements we need.
+}
+
+function aboutPage(){
+	document.getElementById("login_page").style.display = "none";
+	document.getElementById("home_div").style.display = "none";
+	document.getElementById("register_div").style.display = "none";
+	document.getElementById("editKey").style.display = "none";
+	document.getElementById("saveMessage").style.display = "none";
+	document.getElementById("setting_page").style.display = "none";
+	document.getElementById("about_page").style.display = "block";
+	
+
+	//click X
+	(document.getElementsByClassName("close")[0]).onclick = function() {
+		document.getElementById("about_page").style.display = "none";
+		document.getElementById("home_div").style.display = "block";
+	}
+	// click outside dialog
+	// window.onclick = function(event) {
+	// if (event.target == document.getElementById("about_page")) {
+	// 	document.getElementById("about_page").style.display = "none";
+	// 	document.getElementById("home_div").style.display = "block";
+	// }
+	// }
+	// var dialog = document.getElementById("about_page");
+
+	var dialog = document.getElementsByTagName('dialog')[0];
+    dialog.showModal();
+    dialog.addEventListener('click', function (event) {
+        var rect = dialog.getBoundingClientRect();
+        var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+          && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+			document.getElementById("about_page").style.display = "none";
+			document.getElementById("home_div").style.display = "block";
+			dialog.close();
+			return;
+        }
+    });
+
+
+	// click ESC
+	window.addEventListener('keydown', function (event) {
+	if (event.key === 'Escape') {
+		document.getElementById("about_page").style.display = "none";
+		document.getElementById("home_div").style.display = "block";
+		return;
+	}
+	})
+
+}
