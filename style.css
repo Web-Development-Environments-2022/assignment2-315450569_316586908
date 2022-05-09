@@ -381,9 +381,9 @@ h4{
 }
 
 .contact_button{
-    /* box-shadow: 2px 2px 5px 5px rgba(255, 173, 173, 0.2); */
     background-color: #000000;
-    border-radius: 70px;
+    border-radius: 50px;
+
 }
 
 .socialMedia{
