@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
 		<script src="https://kit.fontawesome.com/dd78217d30.js" crossorigin="anonymous"></script>
 		<div class="twoDives">
 			<div class="logo">
@@ -92,12 +93,13 @@
 					<th><input onfocus="this.value =''" id="password_login_input"  type="password" value="Enter Password"></th>
 				</tr>
 			</table>
+			<br>
 			<center>
 				<div class="login_button_div">
 					<button id="login_page_button" onclick="login()">LOGIN</button>
 				</div>
 			</center>
-
+			<br>
 		</div>
 		<div id="setting_page">
 			<div>
@@ -213,7 +215,7 @@
 						The first assignment of building the site, helped us to do this assignment in a better way.
 						We ran into design issues and it took us too long, but we managed to meet the goals we set.</p>
 				</div>
-				<h1 class="headline" style="text-align:center">Our Team</h1>
+				<h1 id="contact" class="headline" style="text-align:center">Contact Our Team</h1>
 
 				<div class="div0">
 					<div class="div1">
@@ -225,6 +227,16 @@
 							<p class="id">315450569</p>
 							<p>Tal 27 years old, a third year student.</p>
 							<p>tal.ben.hamou@post.bgu.ac.il</p>
+							<div class="socialLogo">
+								<a href="	https://www.instagram.com/tal.ben.hamo/">
+								<img class="socialMedia" src="images/instaLogo.png" alt="Instagram">
+								</a>
+							
+								<a href="https://www.facebook.com/tal.benhamou.71">
+								<img class="socialMedia" src="images/facebookLogo.png" alt="Facebook">
+								</a>
+						
+							</div>
 							</center>
 							</div>
 						</div>
@@ -239,6 +251,17 @@
 							<p class="id">316586908</p>
 							<p>Ido 26 years old, a third year student.</p>
 							<p>ido3@post.bgu.ac.il</p>
+							<div class="socialLogo">
+								<a href="https://www.instagram.com/idocohen32/">
+								<img class="socialMedia" src="images/instaLogo.png" alt="Instagram">
+								</a>
+							
+								<a href="https://www.facebook.com/ido.cohen.560">
+								<img class="socialMedia" src="images/facebookLogo.png" alt="Facebook">
+								</a>
+						
+							</div>
+
 							</center>
 							</div>
 						</div>
@@ -246,10 +269,8 @@
 				</div>
 		</dialog>
 
-		<br>
-		<br>
-		<br>
 
+		
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
@@ -262,12 +283,16 @@
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
 
-		<!-- <div>
+		<div id="contact_id">
+			<center>
 			<br>
-			<br>
-			<br>
-		
-			<h1>CONTACT</h1>
-		</div> -->
+				<li class="menuLink">Contact Us</li>
+				</br>
+				<button class="contact_button"><span class="ec ec-telephone-receiver"style="font-size: 60px;" onclick="contact()"></span></button>
+			</center>
+		</div>
+		<br>
+		<br>
+
 	</body>
 </html>

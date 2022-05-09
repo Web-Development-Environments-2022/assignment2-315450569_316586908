@@ -117,6 +117,7 @@ h3{
     align-items: center;
     justify-content: center; 
 }
+
 .register_div th{
     text-align: left;
 }
@@ -367,4 +368,33 @@ h4{
     background-color: rgb(255, 79, 79);
     border-radius: 50px;
 
+}
+
+#contact_id{
+    background-color: #000000;
+    margin-bottom: 80px;
+}
+
+.menuLink{
+    color: white;
+    font-size: 28px
+}
+
+.contact_button{
+    /* box-shadow: 2px 2px 5px 5px rgba(255, 173, 173, 0.2); */
+    background-color: #000000;
+    border-radius: 70px;
+}
+
+.socialMedia{
+	width: 90px;
+	height: 90px;
+	margin-left: 30px;
+
+	opacity: 0.6;
+}
+.socialMedia:hover{
+	background-color: #efe2e2;
+	border-radius: 180px;
+	opacity: 1;
 }
