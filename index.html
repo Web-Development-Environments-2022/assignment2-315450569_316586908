@@ -17,16 +17,16 @@
 		<div id="menu">
 			<ul class="menuNav">
 			  <div class="ph">
-				<li class="menuLink"><button style="margin-top: 7%;" onclick="openHome()" href="#Home">HOME</button></li>
+				<li class="menuLink"><button onclick="openHome()" href="#Home">HOME</button></li>
 			  </div>
 			  <div class="ph" >
-				<li class="menuLink"><button style="margin-top: 5%;" onclick="registerpage()" href="#Register">REGISTER</button></li>
+				<li class="menuLink"><button onclick="registerpage()" href="#Register">REGISTER</button></li>
 			  </div>
 			  <div class="ph">
-				<li class="menuLink"><button style="margin-top: 7%;" onclick="loginpage()">LOGIN</button></li>
+				<li class="menuLink"><button onclick="loginpage()">LOGIN</button></li>
 			  </div>
 			  <div class="ph">
-				<li class="menuLink"><button style="margin-top: 7%;" onclick="aboutPage()" href="#About">ABOUT</button></li>
+				<li class="menuLink"><button onclick="aboutPage()" href="#About">ABOUT</button></li>
 			  </div>	  
 			  </div>
 			</ul>
@@ -152,7 +152,6 @@
 					<input
 					  type="color"
 					  id="ball5"
-					  onchange="clickColor(0, -1, -1, 5)"
 					  value="#FF0000"
 					  style="width: 35%; height: 30px;"
 					/>
@@ -163,7 +162,6 @@
 					<input
 					  type="color"
 					  id="ball15"
-					  onchange="clickColor(0, -1, -1, 5)"
 					  value="#0000FF"
 					  style="width: 35%; height: 30px;"
 					/>
@@ -173,7 +171,6 @@
 					<input
 					  type="color"
 					  id="ball25"
-					  onchange="clickColor(0, -1, -1, 5)"
 					  value="#FFFF00"
 					  style="width: 35%; height: 30px;"
 					/>
@@ -184,7 +181,7 @@
 
 			  <div id="gameTime">
 				<center>
-				<h4 class="time">Please choose game time:(60-180 Second)</h4>
+				<h4 class="time">Please choose game duration:(60-180 Second)</h4>
 				<input id="inputTimeGame" type="range" min="60" max="180" value="100" onchange="chooseTimeGame(this.value)">                             
 				<output id="timeGame" style="color: white; " ></output>
 				</center>
@@ -197,8 +194,14 @@
 				<output id="ghosts" style="color: white;" ></output>
 				</center>
 			</div>
+			<br>
 			<div class="submit_button_details">
-				<button id="submit_button_details" onclick="submitDetails()">SUBMIT</button>
+				<div class="startgame_button">
+					<button id="submit_button_details" style="width: 250px;" onclick="submitDetails()">START-GAME</button>
+				</div>
+				<div class="random_button">
+					<button id="random_button" onclick="randonDetails()">RANDOM</button>
+				</div>
 			</div>
 		</div>
 		<dialog id="about_page" class="aboutClass" >

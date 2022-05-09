@@ -15,6 +15,12 @@ var node;
 var tmpnode;
 var tmpnode_2;
 var textnode;
+var numberOfBalls;
+var fivePointballColour;
+var fifteenPointballColour;
+var TwentyfivePointvallColour;
+var gameDuration;
+var numOfGhosts;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -43,6 +49,9 @@ $(document).ready(function() {
 	downMove = 40;
 	leftMove = 37;
 	rightMove = 39;
+	numberOfBalls = 70;
+	gameDuration = 100;
+
 });
 
 function Start() {
@@ -418,6 +427,13 @@ function chooseGhosts(val) {
 
 function submitDetails(){
 	//save here all elements we need.
+	numberOfBalls = $("#inputScaleBalls").val();
+	fivePointballColour = $("#ball5").val();
+ 	fifteenPointballColour = $("#ball15").val();
+ 	TwentyfivePointvallColour = $("#ball25").val();
+	gameDuration = $("#inputTimeGame").val();
+	numOfGhosts = $("#inputGhost").val();
+
 }
 
 function aboutPage(){
