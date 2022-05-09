@@ -197,7 +197,7 @@
 			<br>
 			<div class="submit_button_details">
 				<div class="startgame_button">
-					<button id="submit_button_details" style="width: 250px;" onclick="submitDetails()">START-GAME</button>
+					<button id="submit_button_details" style="width: 250px;" onclick="startGame()">START-GAME</button>
 				</div>
 				<div class="random_button">
 					<button id="random_button" onclick="randonDetails()">RANDOM</button>
@@ -272,19 +272,35 @@
 				</div>
 		</dialog>
 
+		<div id="GameOn">
+			<table>
+			<div id="gameStats">
+				<div id="score">
+					<label for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
+				</div>
+				<div id="time">
+					<label for="lblTime">TIME:</label>
+					<input id="lblTime" type="text" />
+				</div>
+			</div>
+			
+			<div id="setting_game">
+				<div id="your_setting">
+					<h4>YOUR SETTINGS</h4>
+					<br>
+					<h4>Chosen Keyboard</h4>
+				</div>
 
-		
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+				<div id="game">
+					<canvas id="canvas" height="600" width="600"></canvas>
+				</div>
+
+				
+			</div>
+		</table>
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
+	
 
 		<div id="contact_id">
 			<br>

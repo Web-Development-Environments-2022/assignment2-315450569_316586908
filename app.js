@@ -28,23 +28,18 @@ $(document).ready(function() {
 	openHome();
 
 
-	var time = document.getElementById("time");
-	var score = document.getElementById("score");
-	var game = document.getElementById("game");
-	time.style.display = "none";
-	score.style.display = "none";
-	game.style.display = "none";
-	var registerpage = document.getElementById("register_div");
-	registerpage.style.display = "none";
-	users[0] = ["k","k"];
-
-	// //number of balls scala
-	// var scale = document.getElementById("balls");
-	// var numberOfBalls = document.getElementById("numberballs");
-	// numberOfBalls.innerHTML = scale.value;
-
+	// var time = document.getElementById("time");
+	// var score = document.getElementById("score");
+	// var game = document.getElementById("game");
+	// time.style.display = "none";
+	// score.style.display = "none";
+	// game.style.display = "none";
+	// var registerpage = document.getElementById("register_div");
+	// registerpage.style.display = "none";
+	
 
 	//default values//
+	users[0] = ["k","k"];
 	upMove = 38;
 	downMove = 40;
 	leftMove = 37;
@@ -162,7 +157,7 @@ function Draw() {
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle = "white"; //color
 				context.fill();
 			} else if (board[i][j] == 4) {
 				context.beginPath();
@@ -228,7 +223,8 @@ function openHome(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("login_page").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
-	document.getElementById("about_page").style.display = "none"
+	document.getElementById("about_page").style.display = "none";
+	document.getElementById("GameOn").style.display = "none";
 	document.getElementById("home_div").style.display = "block";
 	
 
@@ -425,7 +421,7 @@ function chooseGhosts(val) {
 	
 }
 
-function submitDetails(){
+function startGame(){
 	//save here all elements we need.
 	numberOfBalls = $("#inputScaleBalls").val();
 	fivePointballColour = $("#ball5").val();
@@ -433,7 +429,16 @@ function submitDetails(){
  	TwentyfivePointvallColour = $("#ball25").val();
 	gameDuration = $("#inputTimeGame").val();
 	numOfGhosts = $("#inputGhost").val();
+	document.getElementById("login_page").style.display = "none";
+	document.getElementById("home_div").style.display = "none";
+	document.getElementById("register_div").style.display = "none";
+	document.getElementById("editKey").style.display = "none";
+	document.getElementById("saveMessage").style.display = "none";
+	document.getElementById("about_page").style.display = "none"
+	document.getElementById("setting_page").style.display = "none";
+	document.getElementById("GameOn").style.display = "block";
 
+	Start();
 }
 
 function aboutPage(){
@@ -472,7 +477,36 @@ function aboutPage(){
 
 }
 
+function randonDetails(){
 
+	let num_balls = getRndInteger(50,90);
+	$("#inputScaleBalls").val(num_balls);
+	$("#numberballs").val(num_balls);
+
+	let five_colour = '#' + Math.floor(Math.random()*16777215).toString(16);
+	$("#ball5").val(five_colour);
+
+	let fifteen_colour = '#' + Math.floor(Math.random()*16777215).toString(16);
+	$("#ball15").val(fifteen_colour);
+
+	let Twentyfive_colour = '#' + Math.floor(Math.random()*16777215).toString(16);
+	$("#ball25").val(Twentyfive_colour);
+
+	let game_dur = getRndInteger(60,180);
+	$("#inputTimeGame").val(game_dur);
+	$("#timeGame").val(game_dur);
+	
+	let num_ghost = getRndInteger(1,4);
+	$("#inputGhost").val(num_ghost);
+	$("#ghosts").val(num_ghost);
+
+	numberOfBalls = $("#inputScaleBalls").val();
+	fivePointballColour = $("#ball5").val();
+ 	fifteenPointballColour = $("#ball15").val();
+ 	TwentyfivePointvallColour = $("#ball25").val();
+	gameDuration = $("#inputTimeGame").val();
+	numOfGhosts = $("#inputGhost").val();
+}
 
 function contact(){
 
@@ -480,3 +514,6 @@ function contact(){
 
 }
 
+function getRndInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
