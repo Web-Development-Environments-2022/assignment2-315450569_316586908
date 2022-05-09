@@ -436,13 +436,7 @@ function aboutPage(){
 		document.getElementById("home_div").style.display = "block";
 	}
 	// click outside dialog
-	// window.onclick = function(event) {
-	// if (event.target == document.getElementById("about_page")) {
-	// 	document.getElementById("about_page").style.display = "none";
-	// 	document.getElementById("home_div").style.display = "block";
-	// }
-	// }
-	// var dialog = document.getElementById("about_page");
+
 
 	var dialog = document.getElementsByTagName('dialog')[0];
     dialog.showModal();
@@ -463,9 +457,15 @@ function aboutPage(){
 	window.addEventListener('keydown', function (event) {
 	if (event.key === 'Escape') {
 		document.getElementById("about_page").style.display = "none";
-		document.getElementById("home_div").style.display = "block";
+		// document.getElementById("home_div").style.display = "block";//problem at this line beacuse when i in resgister and do ESC its open home & register.
 		return;
 	}
 	})
 
 }
+
+function contact(){
+	aboutPage();
+
+}
+
