@@ -128,7 +128,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<th><div id="editKey"><input id="inputKeyBoard" value="Please enter your key..." onfocus="this.value =''"></div><div id="saveMessage"></div></th>
+					<th><div id="editKey"><input id="inputKeyBoard" value="Please enter your key..." onfocus="this.value =''" autocomplete="off"></div><div id="saveMessage"></div></th>
 					<th></th>
 				</tr>
 			</table>
@@ -273,32 +273,104 @@
 		</dialog>
 
 		<div id="GameOn">
-			<table>
-			<div id="gameStats">
-				<div id="score">
-					<label for="lblScore">SCORE:</label>
-					<input id="lblScore" type="text" />
-				</div>
-				<div id="time">
-					<label for="lblTime">TIME:</label>
-					<input id="lblTime" type="text" />
-				</div>
-			</div>
+			<div id="container_s">
+				<div id="setting_game">
+						<div>
+							<center>
+							<h3>GAME SETTINGS</h3>
+							</center>
+						</div>
+						<table class="arrows_s">
+							<tr>
+								<th> </th>
+								<th class="arrowup"><button ><i style='font-size:35px' class='fas'>&#xf077;</i><output id="arrowup_s"></output ></button></th>
+								<th></th>
+							</tr>
+							<tr>
+								<th class="arrowleft"><button ><i style='font-size:35px' class='fas'>&#xf053;</i><output id="arrowleft_s"></output></button></th>
+								<th></th>
+								<th class="arrowright"><button ><i style='font-size:35px' class='fas'>&#xf054;</i><output id="arrowright_s"></output></button></th>
+							</tr>
+							<tr>
+								<th></th>
+								<th class="arrowdown"><button ><i style='font-size:35px' class='fas'>&#xf078;</i><output id="arrowdown_s"></output></button></th>
+								<th></th>
+							</tr>
+						</table>
+						<div id="details">
+							<center>
+							<h4 class="numberOfballs_s">Number of balls:</h4>
+							<input id="inputScaleBalls_s" type="range" min="50" max="90"  value="">                             
+							<output id="numberballs_s" style="color: white; " ></output>
+							</center>
+						</div>
 			
-			<div id="setting_game">
-				<div id="your_setting">
-					<h4>YOUR SETTINGS</h4>
-					<br>
-					<h4>Chosen Keyboard</h4>
-				</div>
-
-				<div id="game">
-					<canvas id="canvas" height="600" width="600"></canvas>
-				</div>
-
+						<div id="chooseColor_s" >
+							<center>
+							<h4>Ball color:</h4>
+							<div >
+							<div>
+								<h4 style="display: inline;">5 Points</h4>
+								<input
+								type="color"
+								id="ball5_s"
+								value="#FF0000"
+								style="width: 10%; height: 30px;" readonly="readonly">
+							</div>
 				
+							<div >
+								<h4  style="display: inline;">15 Points</h4>
+								<input
+								type="color"
+								id="ball15_s"
+								value="#0000FF"
+								style="width: 10%; height: 30px;" readonly>
+							</div>
+							<div >
+								<h4 style="display: inline;">25 Points</h4>
+								<input
+								type="color"
+								id="ball25_s"
+								value="#FFFF00"
+								style="width: 10%; height: 30px;" readonly>
+							</div>
+							</div>
+							</center>
+						</div>
+			
+						<div id="gameTime_s">
+							<center>
+							<h4 class="time">Game duration:</h4>
+							<input id="inputTimeGame_s" type="range" min="60" max="180">                             
+							<output id="timeGame_s" style="color: white; " ></output>
+							</center>
+						</div>
+			
+						<div id="Ghost_s">
+							<center>
+							<h4>Number of Ghosts:</h4>
+							<input id="inputGhost_s" type="range" min="1" max="4" >                             
+							<output id="ghosts_s" style="color: white;" ></output>
+							</center>
+						</div>				
+				</div>
+				<div id="game">
+					<canvas id="canvas" height="900" width="1000" style="background-color:#252525;"></canvas>
+				</div>
+
+				<div id="gameStats">
+					<center>
+					<div id="score">
+						<label for="lblScore" style="color: white;">SCORE:</label>
+						<input id="lblScore" type="text" />
+					</div>
+					<div id="time">
+						<label for="lblTime" style="color: white;">TIME:</label>
+						<input id="lblTime" type="text" />
+					</div>
+					</center>
+				</div>
 			</div>
-		</table>
 		</div>
 	
 

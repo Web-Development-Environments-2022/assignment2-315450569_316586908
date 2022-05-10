@@ -137,7 +137,6 @@ input{
     /* text-decoration: underline; */
     height: 30px;
     border-bottom: 2px solid white;
-    
 }
 .login_button_div button{
     color: rgb(255, 255, 255);
@@ -250,18 +249,28 @@ input{
 	font-family:Arial, Helvetica, sans-serif;
 	text-shadow: 1px 1px 1px #6d4f4f, 0 0 25px #ffffff, 0 0 5px #000000;
 	font-size: 140%;
-
+}
+.arrows_s button {
+	color: rgb(0, 106, 255);
+    background-color: #434343;
+	text-decoration: none;
+	margin: 10%;
+    text-align: center;
+	box-shadow: 0px 0px 10px currentcolor;
+  	border: 4px solid rgb(0, 106, 255);
+  	padding: 15px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 1px #6d4f4f, 0 0 25px #ffffff, 0 0 5px #000000;
+	font-size: 50%;
 }
 
-
-.arrows{
+.arrows, .arrows_s{
     display: flex;
     align-items: center;
     justify-content: center; 
     border-spacing: 0px;
     font-size: x-large;
     color: white;
-
 }
 
 h4{
@@ -391,6 +400,8 @@ h4{
 #contact_id{
     background-color: #000000;
     margin-bottom: 80px;
+    position: static;
+
 }
 
 .menuLink{
@@ -418,17 +429,47 @@ h4{
 }
 
 #gameStats{
-    margin-top: 0px;
+    width: 10%;
+    float: left;
+    margin-right: 35px;
 }
+
 #game{
-    margin-left: 300px;
-    display: inline;
+    width: 70%;
+    height: 1125px;
+    float: left;  
+    padding: 20px;
+    
+  
 }
-#your_setting{
-    margin-left: 0%;
-    display: inline;
-}
+
 #setting_game{
-    margin-top: 0px;
-    align-items: center;
+    z-index: 2;
+    width: 20%;
+    float: left;  
+    padding: 20px;
+	color: rgb(0, 106, 255);
+    background-color: #252525;
+	text-decoration: none;
+	box-shadow: 0px 0px 10px currentcolor;
+  	border: 4px solid rgb(0, 106, 255);
+	font-family:Arial, Helvetica, sans-serif;
+    margin-left: 35px;
+    height: 90%;
+}
+
+#ball5_s,#ball15_s,#ball25_s{
+    border: none;
+    background: none;
+}
+#arrowup_s, #arrowdown_s, #arrowleft_s, #arrowright_s{
+    font-size: medium;
+}
+#container_s{
+    display: flex;
+	justify-content: center;
+}
+#lblScore, #lblTime{
+    border-bottom:none;
+    text-align: center;
 }

@@ -24,20 +24,7 @@ var numOfGhosts;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
-	// Start();
 	openHome();
-
-
-	// var time = document.getElementById("time");
-	// var score = document.getElementById("score");
-	// var game = document.getElementById("game");
-	// time.style.display = "none";
-	// score.style.display = "none";
-	// game.style.display = "none";
-	// var registerpage = document.getElementById("register_div");
-	// registerpage.style.display = "none";
-	
-
 	//default values//
 	users[0] = ["k","k"];
 	upMove = 38;
@@ -57,13 +44,13 @@ function Start() {
 	var food_remain = 50;
 	var pacman_remain = 1;
 	start_time = new Date();
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 25 ; i++) {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < 10; j++) {
+		for (var j = 0; j < 20; j++) {
 			if (
-				(i == 3 && j == 3) ||
-				(i == 3 && j == 4) ||
+				(i == 0) || (j==0) ||
+				(i == 24) || (j == 19) ||
 				(i == 3 && j == 5) ||
 				(i == 6 && j == 1) ||
 				(i == 6 && j == 2)
@@ -106,7 +93,7 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
+	interval = setInterval(UpdatePosition, 25);
 }
 
 function findRandomEmptyCell(board) {
@@ -139,20 +126,20 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < 25; i++) {
+		for (var j = 0; j < 20; j++) {
 			var center = new Object();
-			center.x = i * 60 + 30;
-			center.y = j * 60 + 30;
+			center.x = i * 40 + 30;
+			center.y = j * 40 + 30;
 			if (board[i][j] == 2) {
 				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+				context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
 				context.beginPath();
 				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle = "blue"; //color
 				context.fill();
 			} else if (board[i][j] == 1) {
 				context.beginPath();
@@ -160,14 +147,29 @@ function Draw() {
 				context.fillStyle = "white"; //color
 				context.fill();
 			} else if (board[i][j] == 4) {
-				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
-				context.fillStyle = "grey"; //color
-				context.fill();
+
+				wall_img = new Image(10,10);
+				wall_img.src = "./images/wall.png";
+				context.drawImage(wall_img,center.x-35, center.y-35, 50, 50);
+
 			}
 		}
 	}
 }
+
+function roundedRect(ctx, x, y, width, height, radius) {
+	ctx.beginPath();
+	ctx.moveTo(x, y + radius);
+	ctx.lineTo(x, y + height - radius);
+	ctx.arcTo(x, y + height, x + radius, y + height, radius);
+	ctx.lineTo(x + width - radius, y + height);
+	ctx.arcTo(x + width, y + height, x + width, y + height-radius, radius);
+	ctx.lineTo(x + width, y + radius);
+	ctx.arcTo(x + width, y, x + width - radius, y, radius);
+	ctx.lineTo(x + radius, y);
+	ctx.arcTo(x, y, x, y + radius, radius);
+	ctx.stroke();
+  }
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
@@ -178,7 +180,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < 19 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 		}
 	}
@@ -188,7 +190,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < 24 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
 	}
@@ -235,8 +237,10 @@ function registerpage(){
 	document.getElementById("login_page").style.display = "none";
 	document.getElementById("home_div").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
-	document.getElementById("about_page").style.display = "none"
+	document.getElementById("about_page").style.display = "none";
+	document.getElementById("GameOn").style.display = "none";
 	document.getElementById("register_div").style.display = "block";
+	
 
 }
 
@@ -296,6 +300,7 @@ function loginpage(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("setting_page").style.display = "none";
 	document.getElementById("about_page").style.display = "none"
+	document.getElementById("GameOn").style.display = "none";
 	document.getElementById("login_page").style.display = "block";
 
 }
@@ -318,7 +323,8 @@ function settingpage(){
 	document.getElementById("register_div").style.display = "none";
 	document.getElementById("editKey").style.display = "none";
 	document.getElementById("saveMessage").style.display = "none";
-	document.getElementById("about_page").style.display = "none"
+	document.getElementById("about_page").style.display = "none";
+	document.getElementById("GameOn").style.display = "none";
 	document.getElementById("setting_page").style.display = "block";
 }
 
@@ -356,8 +362,14 @@ function tmp_nodes(){
 }
 
 function editKeyUp(e){
-	upMove = e.keyCode
-	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(upMove) + " saved.");
+	upMove = e.keyCode;
+
+	let tmpval = checkArrow(e.keyCode);
+	if (tmpval != '')
+		tmpnode_2 = document.createTextNode("The key "+ tmpval + " saved.");
+	else
+		tmpnode_2 = document.createTextNode("The key "+String.fromCharCode((96 <= upMove && upMove <= 105) ? upMove-48 : upMove) + " saved.");
+
 	node.replaceChild(tmpnode_2,tmpnode);
 	tmpnode = tmpnode_2;
 	document.getElementById("saveMessage").appendChild(node);
@@ -366,8 +378,14 @@ function editKeyUp(e){
 }
 
 function editKeyDown(e){
-	downMove = e.keyCode
-	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(downMove) + " saved.");
+	downMove = e.keyCode;
+
+	let tmpval = checkArrow(e.keyCode);
+	if (tmpval != '')
+		tmpnode_2 = document.createTextNode("The key "+ tmpval + " saved.");
+	else
+		tmpnode_2 = document.createTextNode("The key "+  String.fromCharCode((96 <= downMove && downMove <= 105) ? downMove-48 : downMove) + " saved.");
+
 	node.replaceChild(tmpnode_2,tmpnode);
 	tmpnode = tmpnode_2;
 	document.getElementById("saveMessage").appendChild(node);
@@ -377,7 +395,13 @@ function editKeyDown(e){
 
 function editKeyLeft(e){
 	leftMove = e.keyCode;
-	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(leftMove) + " saved.");
+
+	let tmpval = checkArrow(e.keyCode);
+	if (tmpval != '')
+		tmpnode_2 = document.createTextNode("The key "+ tmpval + " saved.");
+	else
+		tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode((96 <= leftMove && leftMove <= 105) ? leftMove-48 : leftMove) + " saved.");
+
 	node.replaceChild(tmpnode_2,tmpnode);
 	tmpnode = tmpnode_2;
 	document.getElementById("saveMessage").appendChild(node);
@@ -387,7 +411,13 @@ function editKeyLeft(e){
 
 function editKeyRight(e){
 	rightMove = e.keyCode;
-	tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode(rightMove) + " saved.");
+
+	let tmpval = checkArrow(e.keyCode);
+	if (tmpval != '')
+		tmpnode_2 = document.createTextNode("The key "+ tmpval + " saved.");
+	else
+		tmpnode_2 = document.createTextNode("The key "+ String.fromCharCode((96 <= rightMove && rightMove <= 105) ? rightMove-48 : rightMove) + " saved.");
+
 	node.replaceChild(tmpnode_2,tmpnode);
 	tmpnode = tmpnode_2;
 	document.getElementById("saveMessage").appendChild(node);
@@ -438,6 +468,42 @@ function startGame(){
 	document.getElementById("setting_page").style.display = "none";
 	document.getElementById("GameOn").style.display = "block";
 
+	
+
+	if (checkArrow(upMove) == 'up')
+		document.getElementById("arrowup_s").innerHTML = 'up';
+	else
+		document.getElementById("arrowup_s").innerHTML = String.fromCharCode((96 <= upMove && upMove <= 105) ? upMove-48 : upMove);
+
+	if (checkArrow(downMove) == 'down')
+		document.getElementById("arrowdown_s").innerHTML = 'down';
+	else
+		document.getElementById("arrowdown_s").innerHTML = String.fromCharCode((96 <= downMove && downMove <= 105) ? downMove-48 : downMove);
+
+	if (checkArrow(rightMove) == 'right')
+		document.getElementById("arrowright_s").innerHTML = 'right';
+	else
+		document.getElementById("arrowright_s").innerHTML = String.fromCharCode((96 <= rightMove && rightMove <= 105) ? rightMove-48 : rightMove);
+
+	if (checkArrow(leftMove) == 'left')
+		document.getElementById("arrowleft_s").innerHTML = 'left';
+	else
+		document.getElementById("arrowleft_s").innerHTML = String.fromCharCode((96 <= leftMove && leftMove <= 105) ? leftMove-48 : leftMove);
+
+	$("#inputScaleBalls_s").val(numberOfBalls);
+	$("#numberballs_s").val(numberOfBalls);
+	$("#ball5_s").val(fivePointballColour);
+	
+	$("#ball15_s").val(fifteenPointballColour);
+
+	$("#ball25_s").val(TwentyfivePointvallColour);
+
+	$("#inputTimeGame_s").val(gameDuration);
+	$("#timeGame_s").val(gameDuration);
+	
+	$("#inputGhost_s").val(numOfGhosts);
+	$("#ghosts_s").val(numOfGhosts);
+
 	Start();
 }
 
@@ -474,6 +540,21 @@ function aboutPage(){
 		return;
 	}
 	})
+
+}
+
+function checkArrow(val){
+	
+	if (val == 38)
+		return 'up';
+	else if (val == 40)
+		return 'down';
+	else if (val == 39)
+		return 'right';
+	else if (val == 37)
+		return 'left';
+	else 
+		return '';
 
 }
 
