@@ -21,10 +21,20 @@ var fifteenPointballColour;
 var TwentyfivePointvallColour;
 var gameDuration;
 var numOfGhosts;
+var pacman;
+var emptyCell;
+
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
+
 	openHome();
+
+	//defualtIconMove
+	pacman = new Image(1,1);
+	pacman.src = "./images/icons/pacman_right.jpg";
+
+
 	//default values//
 	users[0] = ["k","k"];
 	upMove = 38;
@@ -43,22 +53,78 @@ function Start() {
 	var cnt = 100;
 	var food_remain = 50;
 	var pacman_remain = 1;
+	emptyCell = new Array();
 	start_time = new Date();
 	for (var i = 0; i < 25 ; i++) {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < 20; j++) {
+		for (var j = 0; j < 21; j++) {
 			if (
-				(i == 0) || (j==0) ||
-				(i == 24) || (j == 19) ||
-				(i == 3 && j == 5) ||
-				(i == 6 && j == 1) ||
-				(i == 6 && j == 2)
-			) {
-				board[i][j] = 4;
+				//border
+				(i == 0) || (j==0) || (i == 24) || (j == 20) ||
+				
+				//from j==0 until j==4 (j->line)
+				(i == 12) && (j == 1) || (i == 12) && (j == 2) || (i == 12) && (j == 3) ||
+
+				(i == 2) && (j == 2) || (i == 3) && (j == 2) || (i == 2) && (j == 3) || (i == 3) && (j == 3) ||
+
+				(i == 5) && (j == 2) ||	(i == 6) && (j == 2) ||	(i == 7) && (j == 2) ||	(i == 5) && (j == 3) ||	(i == 6) && (j == 3) ||	(i == 7) && (j == 3) ||
+
+				(i == 9) && (j == 2) || (i == 10) && (j == 2) || (i == 9) && (j == 3) || (i == 10) && (j == 3) ||
+				
+				(i == 14) && (j == 2) || (i == 15) && (j == 2) || (i == 14) && (j == 3) || (i == 15) && (j == 3) ||
+
+				(i == 17) && (j == 2) || (i == 18) && (j == 2) || (i == 19) && (j == 2) || (i == 17) && (j == 3) || (i == 18) && (j == 3) || (i == 19) && (j == 3) ||
+
+				(i == 21) && (j == 2) || (i == 22) && (j == 2) || (i == 21) && (j == 3) || (i == 22) && (j == 3) ||
+
+				//from here each line is line like board..
+
+				(i == 2) && (j == 5) || (i == 3) && (j == 5) || (i == 5) && (j == 5) || (i == 7) && (j == 5) || (i == 8) && (j == 5) || (i == 9) && (j == 5) || (i == 10) && (j == 5) || (i == 11) && (j == 5) || (i == 12) && (j == 5) || (i == 13) && (j == 5) || (i == 14) && (j == 5) || (i == 15) && (j == 5) || (i == 16) && (j == 5) || (i == 17) && (j == 5) || (i == 19) && (j == 5) || (i == 21) && (j == 5) || (i == 22) && (j == 5) ||
+
+				(i == 5) && (j == 6) || (i == 5) && (j == 6) || (i == 12) && (j == 6) || (i == 19) && (j == 6) ||
+
+				(i == 1) && (j == 7) || (i == 2) && (j == 7) || (i == 3) && (j == 7) || (i == 5) && (j == 7) || (i == 6) && (j == 7) || (i == 7) && (j == 7) || (i == 8) && (j == 7) || (i == 9) && (j == 7) || (i == 10) && (j == 7) || (i == 12) && (j == 7) || (i == 14) && (j == 7) || (i == 15) && (j == 7) || (i == 16) && (j == 7) || (i == 17) && (j == 7) || (i == 18) && (j == 7) || (i == 19) && (j == 7) || (i == 21) && (j == 7) || (i == 22) && (j == 7) || (i == 23) && (j == 7) ||
+
+				(i == 3) && (j == 8) || (i == 5) && (j == 8) || (i == 19) && (j == 8) || (i == 21) && (j == 8) || 
+
+				(i == 1) && (j == 9) || (i == 2) && (j == 9) || (i == 3) && (j == 9) || (i == 5) && (j == 9) || (i == 7) && (j == 9) || (i == 8) && (j == 9) || (i == 9) && (j == 9) || (i == 10) && (j == 9) || (i == 11) && (j == 9) || (i == 13) && (j == 9) || (i == 14) && (j == 9) || (i == 15) && (j == 9) || (i == 16) && (j == 9) || (i == 17) && (j == 9) || (i == 19) && (j == 9) || (i == 21) && (j == 9) || (i == 22) && (j == 9) || (i == 23) && (j == 9) ||
+
+				//midel of board.
+				(i == 7) && (j == 10) || (i == 17) && (j == 10) || 
+
+				(i == 1) && (j == 11) || (i == 2) && (j == 11) || (i == 3) && (j == 11) || (i == 5) && (j == 11) || (i == 7) && (j == 11) || (i == 8) && (j == 11) || (i == 9) && (j == 11) || (i == 10) && (j == 11) || (i == 11) && (j == 11) || (i == 13) && (j == 11) || (i == 14) && (j == 11) || (i == 15) && (j == 11) || (i == 16) && (j == 11) || (i == 17) && (j == 11) || (i == 19) && (j == 11) || (i == 21) && (j == 11) || (i == 22) && (j == 11) || (i == 23) && (j == 11) ||
+
+				(i == 3) && (j == 12) || (i == 5) && (j == 12) || (i == 19) && (j == 12) || (i == 21) && (j == 12) ||
+
+				(i == 1) && (j == 13) || (i == 2) && (j == 13) || (i == 3) && (j == 13) || (i == 5) && (j == 13) || (i == 6) && (j == 13) || (i == 7) && (j == 13) || (i == 8) && (j == 13) || (i == 9) && (j == 13) || (i == 10) && (j == 13) || (i == 12) && (j == 13) || (i == 14) && (j == 13) || (i == 15) && (j == 13) || (i == 16) && (j == 13) || (i == 17) && (j == 13) || (i == 18) && (j == 13) || (i == 19) && (j == 13) || (i == 21) && (j == 13) || (i == 22) && (j == 13) || (i == 23) && (j == 13) ||
+
+				(i == 5) && (j == 14) || (i == 5) && (j == 14) || (i == 12) && (j == 14) || (i == 19) && (j == 14) ||
+
+				(i == 2) && (j == 15) || (i == 3) && (j == 15) || (i == 5) && (j == 15) || (i == 7) && (j == 15) || (i == 8) && (j == 15) || (i == 9) && (j == 15) || (i == 10) && (j == 15) || (i == 11) && (j == 15) || (i == 12) && (j == 15) || (i == 13) && (j == 15) || (i == 14) && (j == 15) || (i == 15) && (j == 15) || (i == 16) && (j == 15) || (i == 17) && (j == 15) || (i == 19) && (j == 15) || (i == 21) && (j == 15) || (i == 22) && (j == 15) ||
+
+				//from j == 16 until j==20 (j->line)
+				(i == 12) && (j == 19) || (i == 12) && (j == 18) || (i == 12) && (j == 17) ||
+
+				(i == 2) && (j == 18) || (i == 3) && (j == 18) || (i == 2) && (j == 17) || (i == 3) && (j == 17) ||
+
+				(i == 5) && (j == 18) || (i == 6) && (j == 18) || (i == 7) && (j == 18) || (i == 5) && (j == 17) || (i == 6) && (j == 17) || (i == 7) && (j == 17) ||
+
+				(i == 9) && (j == 18) || (i == 10) && (j == 18) || (i == 9) && (j == 17) || (i == 10) && (j == 17) ||
+				
+				(i == 14) && (j == 18) || (i == 15) && (j == 18) || (i == 14) && (j == 17) || (i == 15) && (j == 17) ||
+
+				(i == 17) && (j == 18) || (i == 18) && (j == 18) || (i == 19) && (j == 18) || (i == 17) && (j == 17) || (i == 18) && (j == 17) || (i == 19) && (j == 17) ||
+
+				(i == 21) && (j == 18) || (i == 22) && (j == 18) || (i == 21) && (j == 17) || (i == 22) && (j == 17) 
+
+			) { if( !((i == 0) && (j == 8) || (i == 24) && (j == 8) || (i == 0) && (j == 10) || (i == 24) && (j == 10) || (i == 0) && (j == 12) || (i == 24) && (j == 12)) ){
+					board[i][j] = 4;
+				}
+		
 			} else {
 				var randomNum = Math.random();
-				if (randomNum <= (1.0 * food_remain) / cnt) {
+				if (randomNum <= (1.0 * food_remain) / cnt ) {
 					food_remain--;
 					board[i][j] = 1;
 				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
@@ -70,6 +136,9 @@ function Start() {
 					board[i][j] = 0;
 				}
 				cnt--;
+			}
+			if (board[i][j] == 0){
+				emptyCell.push([i, j]);
 			}
 		}
 	}
@@ -93,7 +162,21 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 25);
+	interval = setInterval(UpdatePosition, 95);
+
+	//insert the cells are not wall drawing but can`t get them.
+	emptyCell.push([0,9]);
+	emptyCell.push([1,9]);
+	emptyCell.push([2,9]);
+	emptyCell.push([0,13]);
+	emptyCell.push([1,13]);
+	emptyCell.push([2,13]);
+	emptyCell.push([24,9]);
+	emptyCell.push([23,9]);
+	emptyCell.push([22,9]);
+	emptyCell.push([24,13]);
+	emptyCell.push([23,13]);
+	emptyCell.push([22,13]);
 }
 
 function findRandomEmptyCell(board) {
@@ -122,25 +205,39 @@ function GetKeyPressed() {
 	}
 }
 
-function Draw() {
+function Draw(x) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	moveFrom = x; //1 up, 2 down, 3 left, 4 right
 	for (var i = 0; i < 25; i++) {
-		for (var j = 0; j < 20; j++) {
+		for (var j = 0; j < 21; j++) {
 			var center = new Object();
 			center.x = i * 40 + 30;
 			center.y = j * 40 + 30;
 			if (board[i][j] == 2) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color
-				context.fill();
-				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "blue"; //color
-				context.fill();
+				pacman_img = new Image(1,1);
+				if (moveFrom==1){ //pacman move up
+					pacman_img.src = "./images/icons/pacman_up.jpg";
+					pacman = pacman_img;
+				}
+				else if(moveFrom==2){ //pacman move down
+					pacman_img.src = "./images/icons/pacman_down.jpg";
+					pacman = pacman_img;	
+				}
+				else if(moveFrom==3){ //pacman move left
+					pacman_img.src = "./images/icons/pacman_left.jpg";
+					pacman = pacman_img;	
+				}
+				else if(moveFrom==4){ //pacman move right
+					pacman_img.src = "./images/icons/pacman_right.jpg";
+					pacman = pacman_img;
+				}
+				else{
+					pacman_img = pacman;
+				}
+				context.drawImage(pacman_img,center.x-35, center.y-35, 50, 50);
+
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
@@ -152,6 +249,16 @@ function Draw() {
 				wall_img.src = "./images/wall.png";
 				context.drawImage(wall_img,center.x-35, center.y-35, 50, 50);
 
+			}
+			if ((i==0) && (j==10)){
+				var img = new Image(1,1);
+				img.src = "./images/icons/jump_imgLeft.png"
+				context.drawImage(img,center.x-35, center.y-35, 50, 50);
+			}
+			if ((i==24) && (j==10)){
+				var img = new Image(1,1);
+				img.src = "./images/icons/jump_imgRight.png"
+				context.drawImage(img,center.x-35, center.y-35, 50, 50);
 			}
 		}
 	}
@@ -180,7 +287,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {
-		if (shape.j < 19 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < 20 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 		}
 	}
@@ -188,15 +295,23 @@ function UpdatePosition() {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) {
 			shape.i--;
 		}
+		else if((shape.i == 0)&&(shape.j==10)){
+			shape.i+=24;
+		}
 	}
 	if (x == 4) {
 		if (shape.i < 24 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
+		else if((shape.i == 24)&&(shape.j==10)){
+			shape.i-=24;
+		}
 	}
 	if (board[shape.i][shape.j] == 1) {
 		score++;
 	}
+
+
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -207,9 +322,17 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.alert("Game completed");
 	} else {
-		Draw();
+		Draw(x);
 	}
 }
+
+
+function candyMove(){
+	if( checkNeighbor ){
+
+	}
+}
+
 
 window.onscroll = function() {scrollFunction()};
 
@@ -452,6 +575,13 @@ function chooseGhosts(val) {
 }
 
 function startGame(){
+	//disable scroll with arrows
+	window.addEventListener("keydown", function(e) {
+		if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+			e.preventDefault();
+		}
+	}, false);
+
 	//save here all elements we need.
 	numberOfBalls = $("#inputScaleBalls").val();
 	fivePointballColour = $("#ball5").val();
