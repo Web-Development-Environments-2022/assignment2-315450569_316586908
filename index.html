@@ -388,6 +388,16 @@
 						<div class="newgame">
 							<button id="newgame_button" style="color: white;" onclick="settingpage()">New Game</button>
 						</div>
+						<div class="audioGame">	
+							<audio id="myAudio" loop>
+								<source src="audio/pacmanSong.mp4" type="audio/mp4" >
+							</audio>
+							<audio id="myAudioDeath">
+								<source src="audio/Death.mp3" type="audio/mp3" >
+							</audio>
+							<img id="audioIG" src="images/icons/audioIcon.png" />
+							<button id="audio" onclick="audioAction()">Mute</button>
+						</div>
 					</center>
 				</div>
 			</div>

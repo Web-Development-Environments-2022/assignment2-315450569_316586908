@@ -34,6 +34,7 @@ var pacman_remain;
 var lives;
 var onelive;
 var global_numBalls;
+var audio;
 // var emptyCell;
 
 
@@ -55,7 +56,7 @@ $(document).ready(function() {
 	rightMove = 39;
 	numberOfBalls = 70;
 	gameDuration = 100;
-	
+	audio=false;
 	
 
 	
@@ -84,6 +85,11 @@ function Start() {
 	window.onscroll = function() {GameMode_scrollFunction()};
 	lblTime.style.color = "white";
 	$("#time_label").css("color", "white");
+
+
+	//setAUDIo
+	audioAction();
+
 	board = new Array();
 	score = 0;
 	var cnt = 500;
@@ -248,6 +254,41 @@ function Start() {
 	
 
 }
+function audioAction(){
+	// let mute = new Audio("assets/sounds/pacmanremix.mp3");
+	var mute = document.getElementById("myAudio"); 
+	
+	if (audio){
+		audio=false;
+		$("#audioIG").attr('src', "./images/icons/muteAudioFix.png");
+		mute.pause(); 
+		mute.autoplay = true;
+
+
+	}
+	else{
+		audio=true;
+		$("#audioIG").attr('src', "./images/icons/audioIcon.png");
+		mute.play();
+
+	}
+	
+}
+function audioActionDeath(){
+	// let mute = new Audio("assets/sounds/pacmanremix.mp3");
+	var mute = document.getElementById("myAudioDeath"); 	
+	var p = document.getElementById("myAudio"); 
+	if (audio){
+		p.pause();
+		mute.play();
+		setTimeout(function(){
+			document.getElementById("myAudio").play();	
+		  }, 1500)
+
+	}
+	
+}
+
 function setGhosts(){
 	ghost1 = new ghost(1,1,1);
 	ghost2 = new ghost(23,1,2);
@@ -286,6 +327,10 @@ function findRandomEmptyCell(board) {
 function resetGame(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
+	if (audio){
+		audioAction();
+	}
+
 }
 
 function checkCantVisit(i,j){
@@ -441,7 +486,7 @@ function UpdatePosition() {
 			score-=10;
 			// lives decrease
 			lives--;
-	
+			audioActionDeath();
 			randomPositionPacMan();
 			setGhosts();
 			displayLives(lives);
@@ -460,7 +505,10 @@ function UpdatePosition() {
 		lblTime.style.color = "red";
 		$("#time_label").css("color", "red");
 	}
-	if (global_numBalls == 0) {
+	// if (global_numBalls == 0) {
+	// 	endGameWinner();
+	// }
+	if (score == ball5*5+ball15*15+ball25*25-(lives*10)) {
 		endGameWinner();
 	}
 	if (time_elapsed == 0){
@@ -473,9 +521,10 @@ function UpdatePosition() {
 
 
 function endGameWinner(){
+	window.alert("Game completed");
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
-	window.alert("Game completed");
+	// window.alert("Game completed");
 }
 
 function endGameLoser(){
@@ -607,6 +656,7 @@ function openHome(){
 	document.getElementById("home_div").style.display = "block";
 	window.onscroll = function() {scrollFunction()};
 	resetGame();
+
 	
 
 }
@@ -621,6 +671,7 @@ function registerpage(){
 	document.getElementById("register_div").style.display = "block";
 	window.onscroll = function() {scrollFunction()};
 	resetGame();
+
 	
 
 }
@@ -686,6 +737,7 @@ function loginpage(){
 	window.onscroll = function() {scrollFunction()};
 	resetGame();
 
+
 }
 
 function login(){
@@ -711,6 +763,7 @@ function settingpage(){
 	document.getElementById("setting_page").style.display = "block";
 	window.onscroll = function() {scrollFunction()};
 	resetGame();
+
 }
 
 function chooseKeyBoard(e, text){
