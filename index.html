@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./ghost.js"></script>
 		<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
 		<script src="https://kit.fontawesome.com/dd78217d30.js" crossorigin="anonymous"></script>
 		<div class="twoDives">
@@ -350,24 +351,43 @@
 							<center>
 							<h4>Number of Ghosts:</h4>
 							<input id="inputGhost_s" type="range" min="1" max="4" >                             
-							<output id="ghosts_s" style="color: white;" ></output>
+							<output id="ghosts_s" style="color: white;"></output>
 							</center>
 						</div>				
 				</div>
 				<div id="game">
+					<br>
+					<br>
 					<canvas id="canvas" height="840" width="1000" style="background-color:#252525;"></canvas>
 				</div>
 
 				<div id="gameStats">
 					<center>
-					<div id="score">
-						<label for="lblScore" style="color: white;">SCORE:</label>
-						<input id="lblScore" type="text" />
-					</div>
-					<div id="time">
-						<label for="lblTime" style="color: white;">TIME:</label>
-						<input id="lblTime" type="text" />
-					</div>
+						<div id="score">
+							<label for="lblScore" style="color: white;">SCORE:</label>
+							<output id="lblScore" type="text"></output>
+						</div>
+						<div id="time">
+							<label id="time_label" for="lblTime" style="color: white;">TIME:</label>
+							<output id="lblTime" type="text"></output>
+						</div>
+						<div id="lives">
+							<label for="lblLive" style="color: white;">LIVES:
+								<img id="lblLive1" src="./images/icons/1Lives.png" style="width: 20px; height:20px"></img>
+								<img id="lblLive2" src="./images/icons/2Lives.png" style="width: 35px; height:20px"></img>
+								<img id="lblLive3" src="./images/icons/3Lives.png" style="width: 60px; height:20px"></img>
+							</label>
+						</div>
+						<div id="user_play">
+							<label for="lbluser" style="color: white;">USER NAME:</label>
+							<output id="lbluser_op" type="text"></output>
+						</div>
+						<br>
+						<br>
+						<br>
+						<div class="newgame">
+							<button id="newgame_button" style="color: white;" onclick="settingpage()">New Game</button>
+						</div>
 					</center>
 				</div>
 			</div>
