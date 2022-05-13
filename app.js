@@ -35,6 +35,8 @@ var lives;
 var onelive;
 var global_numBalls;
 var audio;
+var scoreRemain;
+
 // var emptyCell;
 
 
@@ -101,6 +103,8 @@ function Start() {
 	var ball25 = Math.floor(numberOfBalls * 0.1);
 	global_numBalls = ball5 + ball15 + ball25;
 	pacman_remain = 1;
+	scoreRemain = 0;
+
 	
 	start_time = new Date();
 	for (var i = 0; i < 25 ; i++) {
@@ -176,6 +180,7 @@ function Start() {
 					if (randomNum2 == 0){
 						if (ball5>0){
 							board[i][j] = "F5";
+							scoreRemain = scoreRemain + 5;
 							ball5--;
 						}
 						else
@@ -190,6 +195,8 @@ function Start() {
 					if (randomNum2 == 1){
 						if (ball15>0){
 							board[i][j] = "F15";
+							scoreRemain = scoreRemain + 15;
+
 							ball15--;
 						}
 						else{
@@ -200,6 +207,8 @@ function Start() {
 					}
 					if (randomNum2 == 2 && ball25>0){
 						board[i][j] = "F25";
+						scoreRemain = scoreRemain + 25;
+
 						ball25--;
 					}
 					food_remain--;
@@ -223,14 +232,20 @@ function Start() {
 		var emptyCell = findRandomEmptyCell(board);
 		if (ball5>0){
 			board[emptyCell[0]][emptyCell[1]] = "F5";
+			scoreRemain = scoreRemain + 5;
+
 			ball5--;
 		}
 		else if (ball15>0){
 			board[emptyCell[0]][emptyCell[1]] = "F15";
+			scoreRemain = scoreRemain + 15;
+
 			ball15--
 		}
 		else if (ball25>0){
 			board[emptyCell[0]][emptyCell[1]] = "F25";
+			scoreRemain = scoreRemain + 25;
+
 			ball25--
 		}
 		food_remain--;
@@ -251,7 +266,7 @@ function Start() {
 		false
 	);
 	setGhosts()
-	interval = setInterval(UpdatePosition, 150);
+	interval = setInterval(UpdatePosition, 180);
 	ghostInterval = setInterval(updateGhostsposition, 320);
 	
 
@@ -330,6 +345,7 @@ function findRandomEmptyCell(board) {
 function resetGame(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
+	$("td.los").children("a").text("You are better than " + score +" points!");
 	if (audio){
 		audioAction();
 	}
@@ -457,7 +473,7 @@ function UpdatePosition() {
 			shape.i--;
 		}
 		else if((shape.i == 0)&&(shape.j==10)){
-			shape.i+=24;
+			shape.i = shape.i + 24;
 		}
 	}
 	if (darPacman == 4) {
@@ -465,20 +481,25 @@ function UpdatePosition() {
 			shape.i++;
 		}
 		else if((shape.i == 24)&&(shape.j==10)){
-			shape.i-=24;
+			shape.i = shape.i - 24;
 		}
 	}
 	if (board[shape.i][shape.j] == "F5") {
-		score+=5;
+		score = score + 5;
 		global_numBalls--;
+		scoreRemain = scoreRemain -5;
 	}
 	if (board[shape.i][shape.j] == "F15") {
-		score+=15;
+		score = score + 15;
 		global_numBalls--;
+		scoreRemain = scoreRemain - 15;
+
 	}
 	if (board[shape.i][shape.j] == "F25") {
-		score+=25;
+		score = score + 25;
 		global_numBalls--;
+		scoreRemain = scoreRemain -25;
+
 	}
 
 	for (var i = 0; i < ghosts.length; i++){
@@ -486,7 +507,7 @@ function UpdatePosition() {
 			(shape.i == ghosts[i].line && shape.j == ghosts[i].column)
 		)
 		{
-			score-=10;
+			score = score - 10;
 			// lives decrease
 			lives--;
 			audioActionDeath();
@@ -508,14 +529,18 @@ function UpdatePosition() {
 		lblTime.style.color = "red";
 		$("#time_label").css("color", "red");
 	}
-	// if (global_numBalls == 0) {
-	// 	endGameWinner();
-	// }
-	if (score == ball5*5+ball15*15+ball25*25-(lives*10)) {
+	if (scoreRemain == 0) {
+		// window.alert("Game completed");
 		endGameWinner();
 	}
+
+	// if (score == ball5*5+ball15*15+ball25*25-((3-lives)*10)) {//not working beacuse not evrey eat score++ becuse intrval mabye?
+	// 	endGameWinner();
+	// }
 	if (time_elapsed == 0){
+
 		endGameLoser();
+
 	}
 	else {
 		Draw(darPacman);
@@ -524,16 +549,36 @@ function UpdatePosition() {
 
 
 function endGameWinner(){
-	window.alert("Game completed");
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
-	// window.alert("Game completed");
+
+	document.getElementById("loser").style.display = "none";
+	document.getElementById("winner").style.display = "block";
+	//click X
+	(document.getElementsByClassName("close")[0]).onclick = function() {
+		document.getElementById("divWin").style.display = "none";
+	}
+
+	resetGame();
+	startGame();
+
+	
 }
 
 function endGameLoser(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
-	window.alert("You Lose");
+	document.getElementById("loser").style.display = "block";
+	document.getElementById("winner").style.display = "none";
+	if (score < 100){
+		document.getElementById('los').innerHTML= "You are better than " + score +" points!";
+	}
+	else{
+		document.getElementById('los').innerHTML= ".";
+
+	}
+
+	resetGame();
 	startGame();
 }
 
@@ -622,11 +667,22 @@ function displayLives(num){
 	}
 	else
 	{
-		endGameLoser();
+		endGameLoserIMG();
+
+
 	}
 
 }
-
+function endGameLoserIMG(){
+	//img loser..
+	window.clearInterval(interval);
+	window.clearInterval(ghostInterval);
+	document.getElementById("loser").style.display = "block";
+	document.getElementById("winner").style.display = "none";
+	resetGame();
+	startGame();
+	
+}
 
 window.onscroll = function() {scrollFunction()};
 

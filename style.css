@@ -558,3 +558,59 @@ h4{
 	font-family:Arial, Helvetica, sans-serif;
 	text-shadow: 1px 1px 1px #6d4f4f, 0 0 25px #ffffff, 0 0 5px #000000;
 }
+
+
+
+#winner, #loser{
+    display: none; 
+    position: fixed; 
+    z-index: 3; 
+    padding-top: 10px; 
+    left: 0;
+    top: 20px;
+    width: 70%; 
+    height: 70%; 
+    max-width: 70%;
+    max-height: 70%;
+    overflow: auto; 
+    background-color: rgb(243, 243, 243); 
+    background-color: rgba(118, 137, 127, 0.4); 
+}
+
+.closeWin, .closelose{
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+      
+.toprightWin, .toprightLose{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgb(255, 79, 79);
+    border-radius: 50px;
+
+}
+#WinImgae{
+    width: 900px;
+    height: 600px;
+}
+#loseImage{
+    width: 900px;
+    height: 700px;
+}
+
+#los{
+    color: rgb(255, 43, 43); 
+    font-size: 38px;
+    display: block;
+  
+}
