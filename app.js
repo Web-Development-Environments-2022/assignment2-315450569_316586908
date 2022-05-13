@@ -74,6 +74,8 @@ $(document).ready(function() {
 	cant_visit.push([23,12]);
 	cant_visit.push([22,12]);
 
+
+
 	
 });
 
@@ -250,7 +252,7 @@ function Start() {
 	);
 	setGhosts()
 	interval = setInterval(UpdatePosition, 150);
-	ghostInterval = setInterval(updateGhostsposition, 250);
+	ghostInterval = setInterval(updateGhostsposition, 320);
 	
 
 }
@@ -269,6 +271,7 @@ function audioAction(){
 	else{
 		audio=true;
 		$("#audioIG").attr('src', "./images/icons/audioIcon.png");
+		mute.volume = 0.05;
 		mute.play();
 
 	}
@@ -897,6 +900,12 @@ function startGame(){
 		}
 	}, false);
 
+	var w = window.screen.height;
+	var h = window.screen.width;
+
+
+
+
 	//save here all elements we need.
 	numberOfBalls = $("#inputScaleBalls").val();
 	fivePointballColour = $("#ball5").val();
@@ -1043,3 +1052,4 @@ function contact(){
 function getRndInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) ) + min;
   }
+
