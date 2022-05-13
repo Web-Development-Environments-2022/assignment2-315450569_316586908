@@ -271,7 +271,7 @@ function audioAction(){
 	else{
 		audio=true;
 		$("#audioIG").attr('src', "./images/icons/audioIcon.png");
-		mute.volume = 0.05;
+		mute.volume = 0.2;
 		mute.play();
 
 	}
