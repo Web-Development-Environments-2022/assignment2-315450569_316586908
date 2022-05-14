@@ -83,7 +83,7 @@ $(document).ready(function() {
 });
 
 function Start() {
-	lives = 3;
+	lives = 5;
 	displayLives(lives);
 	resetGame();
 	document.getElementById("lbluser_op").innerHTML = $("#username_login_input").val();
@@ -268,7 +268,7 @@ function Start() {
 	);
 	setGhosts()
 	interval = setInterval(UpdatePosition, 180);
-	ghostInterval = setInterval(updateGhostsposition, 320);
+	ghostInterval = setInterval(updateGhostsposition, 300);
 	
 
 }
@@ -694,24 +694,44 @@ function findNeighbors(x,y){
 }
 
 function displayLives(num){
-
-	if (num == 3){
+	if (num == 5){
 		document.getElementById("lblLive1").style.display = "none";
 		document.getElementById("lblLive2").style.display = "none";
+		document.getElementById("lblLive3").style.display = "none";
+		document.getElementById("lblLive4").style.display = "none";
+		document.getElementById("lblLive5").style.display = "inline";
+	}
+	else if (num == 4){
+		document.getElementById("lblLive1").style.display = "none";
+		document.getElementById("lblLive2").style.display = "none";
+		document.getElementById("lblLive3").style.display = "none";
+		document.getElementById("lblLive5").style.display = "none";
+		document.getElementById("lblLive4").style.display = "inline";
+	}
+	else if (num == 3){
+		document.getElementById("lblLive1").style.display = "none";
+		document.getElementById("lblLive2").style.display = "none";
+		document.getElementById("lblLive4").style.display = "none";
+		document.getElementById("lblLive5").style.display = "none";
 		document.getElementById("lblLive3").style.display = "inline";
 	}
 	else if (num == 2){
 		document.getElementById("lblLive1").style.display = "none";
-		document.getElementById("lblLive2").style.display = "inline";
 		document.getElementById("lblLive3").style.display = "none";
+		document.getElementById("lblLive4").style.display = "none";
+		document.getElementById("lblLive5").style.display = "none";
+		document.getElementById("lblLive2").style.display = "inline";
 	}
 	else if (num == 1){
-		document.getElementById("lblLive1").style.display = "inline";
 		document.getElementById("lblLive2").style.display = "none";
 		document.getElementById("lblLive3").style.display = "none";
+		document.getElementById("lblLive4").style.display = "none";
+		document.getElementById("lblLive5").style.display = "none";
+		document.getElementById("lblLive1").style.display = "inline";
 	}
 	else
 	{
+		document.getElementById("lblLive1").style.display = "none";
 		endGameLoserIMG();
 	}
 
@@ -992,9 +1012,6 @@ function startGame(){
 
 	var w = window.screen.height;
 	var h = window.screen.width;
-
-
-
 
 	//save here all elements we need.
 	numberOfBalls = $("#inputScaleBalls").val();
