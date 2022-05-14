@@ -43,7 +43,7 @@ var timer;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
-
+	// window.onscroll = function() {scrollFunction()};
 	openHome();
 
 	//defualtIconMove
@@ -287,7 +287,7 @@ function audioAction(){
 	else{
 		audio=true;
 		$("#audioIG").attr('src', "./images/icons/audioIcon.png");
-		mute.volume = 0.2;
+		mute.volume = 0.1;
 		mute.play();
 
 	}
@@ -738,7 +738,7 @@ function displayLives(num){
 }
 
 
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
 	$("#menu").css("opacity", "1");
@@ -769,8 +769,6 @@ function openHome(){
 	document.getElementById("home_div").style.display = "block";
 	window.onscroll = function() {scrollFunction()};
 	resetGame();
-
-	
 
 }
 
