@@ -36,6 +36,7 @@ var onelive;
 var global_numBalls;
 var audio;
 var scoreRemain;
+var timer;
 
 // var emptyCell;
 
@@ -104,7 +105,7 @@ function Start() {
 	global_numBalls = ball5 + ball15 + ball25;
 	pacman_remain = 1;
 	scoreRemain = 0;
-
+	timer = 1;
 	
 	start_time = new Date();
 	for (var i = 0; i < 25 ; i++) {
@@ -349,7 +350,6 @@ function resetGame(){
 	if (audio){
 		audioAction();
 	}
-
 }
 
 function checkCantVisit(i,j){
@@ -433,7 +433,8 @@ function Draw(darPacman) {
 				context.drawImage(wall_img,center.x-35, center.y-35, 50, 50);
 
 			}
-			if ((i==0) && (j==10)){
+			
+			if ((i==0) && (j==10)&& (timer==1)){
 				var img = new Image(1,1);
 				img.src = "./images/icons/jump_imgLeft.png"
 				context.drawImage(img,center.x-35, center.y-35, 50, 50);
@@ -441,6 +442,11 @@ function Draw(darPacman) {
 			if ((i==24) && (j==10)){
 				var img = new Image(1,1);
 				img.src = "./images/icons/jump_imgRight.png"
+				context.drawImage(img,center.x-35, center.y-35, 50, 50);
+			}
+			if ((i==12)&&(j==10) && (timer==1)){
+				var img = new Image(1,1);
+				img.src = "./images/icons/timer.png"
 				context.drawImage(img,center.x-35, center.y-35, 50, 50);
 			}
 
@@ -523,24 +529,42 @@ function UpdatePosition() {
 	
 	board[shape.i][shape.j] = "P";
 	var currentTime = new Date();
-	time_elapsed = gameDuration/1000 + (gameDuration - (currentTime - start_time) / 1000);
-	time_elapsed = time_elapsed.toFixed(0);
+	if ((shape.i==12)&&(shape.j==10)&&(timer==1)){
+		timer--;
+		var time_number = parseInt(time_elapsed);
+		var timerIncrees = time_number+30;
+		time_elapsed = timerIncrees.toString()
+
+	}
+	else{
+		if (timer==0){
+			time_elapsed = gameDuration/1000 + (gameDuration - (currentTime - start_time) / 1000);
+			time_elapsed = time_elapsed.toFixed(0);
+			var time_number = parseInt(time_elapsed);
+			var timerIncrees = time_number+30;
+			time_elapsed = timerIncrees.toString()
+
+		}
+		else{
+			time_elapsed = gameDuration/1000 + (gameDuration - (currentTime - start_time) / 1000);
+			time_elapsed = time_elapsed.toFixed(0);
+		}
+	}
+
 	if (time_elapsed <= 10) {
 		lblTime.style.color = "red";
 		$("#time_label").css("color", "red");
 	}
+	else{
+		lblTime.style.color = "white";
+		$("#time_label").css("color", "white");
+	}
 	if (scoreRemain == 0) {
-		// window.alert("Game completed");
 		endGameWinner();
 	}
 
-	// if (score == ball5*5+ball15*15+ball25*25-((3-lives)*10)) {//not working beacuse not evrey eat score++ becuse intrval mabye?
-	// 	endGameWinner();
-	// }
 	if (time_elapsed == 0){
-
 		endGameLoser();
-
 	}
 	else {
 		Draw(darPacman);
@@ -551,18 +575,17 @@ function UpdatePosition() {
 function endGameWinner(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
-
 	document.getElementById("loser").style.display = "none";
 	document.getElementById("winner").style.display = "block";
-	//click X
-	(document.getElementsByClassName("close")[0]).onclick = function() {
-		document.getElementById("divWin").style.display = "none";
+	if (audio){
+		audioAction();
 	}
-
 	resetGame();
-	startGame();
-
-	
+	//click X
+	(document.getElementsByClassName("closeWin")[0]).onclick = function() {
+		document.getElementById("winner").style.display = "none";
+		settingpage();
+	}
 }
 
 function endGameLoser(){
@@ -574,12 +597,34 @@ function endGameLoser(){
 		document.getElementById('los').innerHTML= "You are better than " + score +" points!";
 	}
 	else{
-		document.getElementById('los').innerHTML= ".";
+		document.getElementById('los').innerHTML= "Nice Try!";
 
 	}
-
+	if (audio){
+		audioAction();
+	}
 	resetGame();
-	startGame();
+	//click X
+	(document.getElementsByClassName("closelose")[0]).onclick = function() {
+		document.getElementById("loser").style.display = "none";
+		settingpage();
+	}
+}
+
+function endGameLoserIMG(){
+	window.clearInterval(interval);
+	window.clearInterval(ghostInterval);
+	document.getElementById("loser").style.display = "block";
+	document.getElementById("winner").style.display = "none";
+	resetGame();
+	if (audio){
+		audioAction();
+	}
+	(document.getElementsByClassName("closelose")[0]).onclick = function() {
+		document.getElementById("loser").style.display = "none";
+		settingpage();
+
+	}
 }
 
 function updateGhostsposition(){
@@ -668,21 +713,10 @@ function displayLives(num){
 	else
 	{
 		endGameLoserIMG();
-
-
 	}
 
 }
-function endGameLoserIMG(){
-	//img loser..
-	window.clearInterval(interval);
-	window.clearInterval(ghostInterval);
-	document.getElementById("loser").style.display = "block";
-	document.getElementById("winner").style.display = "none";
-	resetGame();
-	startGame();
-	
-}
+
 
 window.onscroll = function() {scrollFunction()};
 
