@@ -27,6 +27,6 @@ Functionality
     • The amount of disqualifications of the player is displayed in the bar on the right when each disqualification drops one heart from the display.
     • LOSER / WINNER screen with notification to the user as requested.
     • Enter "game" mode When you reach the game screen and scroll down (center the board in the middle of the screen), 
-      the menu bar enters "game" mode and make it at    least noticeable.
+      the menu bar enters "game" mode and make it at least noticeable.
    
     
