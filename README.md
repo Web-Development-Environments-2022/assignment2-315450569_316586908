@@ -7,8 +7,12 @@ Names - Tal Ben Hamou & Ido Cohen
 
 Tasks
 
-    1.Add about page with details of team and description about our work.
-    2.Desgin our game with advanced design principles using Java Script.
+    1.Login page, Home Page - Special design using JS.
+    2.Submit page - use JQuery and Regex Exprision to Identify the user details as requested.
+    3.About page - with details of team and description about our work.
+    4.Setting page - The user selects the game settings, where he can also press the random button and get random game settings, with the keyboard buttons (arrows) set         by default.
+    5.Game Page - using JS to Design and add functionality to our game like notes below.
+    6.Desgin our page with advanced design principles using Java Script and JQuery.
     
 Functionality
 
