@@ -5,6 +5,8 @@
 
 Names - Tal Ben Hamou & Ido Cohen
 
+https://web-development-environments-2022.github.io/assignment2-315450569_316586908/
+
 Tasks
 
     1.Login page, Home Page - Special design using JS.
