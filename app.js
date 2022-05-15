@@ -862,6 +862,8 @@ function submit(){
 	users.push([$("#username_input").val(), $("#password_input").val()]);
 	
 	window.alert("submition succesful");
+	loginpage();
+
 }
 
 function loginpage(){
@@ -880,9 +882,14 @@ function loginpage(){
 function login(){
 	for (i = 0; i < users.length ; i++){
 		if (users[i][0] == $("#username_login_input").val()){
-			if (users[i][1] == $("#password_login_input").val())
+			if (users[i][1] == $("#password_login_input").val()){
 				settingpage();
 				return;
+			}
+			else {
+				window.alert("The password incorrect.");
+				return;
+			}
 		}
 	}
 
