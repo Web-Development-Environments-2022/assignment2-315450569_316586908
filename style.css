@@ -418,6 +418,12 @@ h4{
     border-radius: 50px;
 
 }
+#about_para{
+    font-family:Arial, Helvetica, sans-serif;
+    font: bold;
+    font-size: larger;
+
+}
 
 #contact_id{
     background-color: #000000;

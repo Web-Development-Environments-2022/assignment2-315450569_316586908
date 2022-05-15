@@ -288,8 +288,6 @@ function audioAction(){
 		$("#audioIG").attr('src', "./images/icons/muteAudioFix.png");
 		mute.pause(); 
 		mute.autoplay = true;
-
-
 	}
 	else{
 		audio=true;
@@ -300,6 +298,7 @@ function audioAction(){
 	}
 	
 }
+// ghost eat pacman
 function audioActionDeath(){
 	// let mute = new Audio("assets/sounds/pacmanremix.mp3");
 	var mute = document.getElementById("myAudioDeath"); 	
@@ -579,8 +578,11 @@ function UpdatePosition() {
 		endGameWinner();
 	}
 
-	if (time_elapsed == 0){
-		endGameLoser();
+	if (time_elapsed == 0){// time is up
+		if (score < 100)
+			endGameLoser(); 
+		else
+			endGameWinner();
 	}
 	else {
 		Draw(darPacman);
@@ -603,22 +605,15 @@ function endGameWinner(){
 		settingpage();
 	}
 }
-
+// time is up and score < 100
 function endGameLoser(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
 	document.getElementById("loser").style.display = "block";
 	document.getElementById("winner").style.display = "none";
-	if (score < 100){
-		document.getElementById('los').innerHTML= "You are better than " + score +" points!";
-	}
-	else{
-		document.getElementById('los').innerHTML= "Nice Try!";
-
-	}
-	if (audio){
-		audioAction();
-	}
+	document.getElementById('los').innerHTML= "You are better than " + score +" points!";
+	
+	audioAction()
 	resetGame();
 	//click X
 	(document.getElementsByClassName("closelose")[0]).onclick = function() {
@@ -627,19 +622,20 @@ function endGameLoser(){
 	}
 }
 
+// no more lives
 function endGameLoserIMG(){
 	window.clearInterval(interval);
 	window.clearInterval(ghostInterval);
 	document.getElementById("loser").style.display = "block";
 	document.getElementById("winner").style.display = "none";
 	resetGame();
-	if (audio){
-		audioAction();
-	}
+	// if (audio){
+	// 	audioAction();
+	// }
+	audioAction();
 	(document.getElementsByClassName("closelose")[0]).onclick = function() {
 		document.getElementById("loser").style.display = "none";
 		settingpage();
-
 	}
 }
 
