@@ -37,6 +37,7 @@ var global_numBalls;
 var audio;
 var scoreRemain;
 var timer;
+var candy_icon;
 
 // var emptyCell;
 
@@ -94,7 +95,7 @@ function Start() {
 
 	//setAUDIo
 	audioAction();
-
+	
 	board = new Array();
 	score = 0;
 	var cnt = 500;
@@ -106,6 +107,7 @@ function Start() {
 	pacman_remain = 1;
 	scoreRemain = 0;
 	timer = 1;
+	candy_icon = new candy(10,10);
 	
 	start_time = new Date();
 	for (var i = 0; i < 25 ; i++) {
@@ -219,16 +221,21 @@ function Start() {
 					shape.j = j;
 					pacman_remain--;
 					board[i][j] = "P";
-				} else {
+				}else {
 					board[i][j] = "E";
 				}
 				cnt--;
 			}
 		}
 	}
+
+	setGhosts();
+
+	// if pacman not on the board yet
 	while (pacman_remain > 0){
 		randomPositionPacMan();
 	}
+	// put all the remain food on board
 	while (food_remain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		if (ball5>0){
@@ -266,7 +273,7 @@ function Start() {
 		},
 		false
 	);
-	setGhosts()
+	
 	interval = setInterval(UpdatePosition, 180);
 	ghostInterval = setInterval(updateGhostsposition, 300);
 	
@@ -315,8 +322,9 @@ function setGhosts(){
 	ghost4 = new ghost(23,19,4);
 	var tmp_ghosts = new Array(ghost1,ghost2,ghost3,ghost4);
 	ghosts = new Array();
-	for (var i = 0 ; i < numOfGhosts; i++)
+	for (var i = 0 ; i < numOfGhosts; i++){
 		ghosts.push(tmp_ghosts[i]);
+	}
 }
 
 function randomPositionPacMan(){
@@ -434,7 +442,7 @@ function Draw(darPacman) {
 
 			}
 			
-			if ((i==0) && (j==10)&& (timer==1)){
+			if ((i==0) && (j==10)){
 				var img = new Image(1,1);
 				img.src = "./images/icons/jump_imgLeft.png"
 				context.drawImage(img,center.x-35, center.y-35, 50, 50);
@@ -449,12 +457,17 @@ function Draw(darPacman) {
 				img.src = "./images/icons/timer.png"
 				context.drawImage(img,center.x-35, center.y-35, 50, 50);
 			}
+			// draw candy
+			if (i == candy_icon.line && j == candy_icon.column && candy_icon.alive)
+				context.drawImage(candy_icon.image,center.x-35, center.y-35, 50, 50);
 
+			// draw ghosts
 			for (var z = 0 ; z < ghosts.length ; z++){
 				if (i == ghosts[z].line && j ==ghosts[z].column){
 					context.drawImage(ghosts[z].image,center.x-35, center.y-35, 50, 50);
 				}
 			}
+			
 
 		}
 	}
@@ -524,8 +537,11 @@ function UpdatePosition() {
 		}
 	}
 
-	
-
+	if (shape.i == candy_icon.line && shape.j == candy_icon.column && candy_icon.alive)
+	{
+		score = score + candy_icon.points;
+		candy_icon.alive = false;
+	}
 	
 	board[shape.i][shape.j] = "P";
 	var currentTime = new Date();
@@ -648,13 +664,19 @@ function updateGhostsposition(){
 		smartMoveGhosts(ghosts[3]);
 	}
 
+	randomMoveCandy(candy_icon);
+
+
 	Draw(darPacman);
 }
 
-function candyMove(){
-	if( checkNeighbor ){
-
-	}
+function randomMoveCandy(c){
+	var neighbors = findNeighbors(c.line,c.column);
+	var step = neighbors[Math.floor(Math.random()*neighbors.length)];
+	c.line = step[0];
+	c.column = step[1];
+	// board[step[0]][step[1]] = "C";
+	
 }
 
 function smartMoveGhosts(g){
@@ -681,6 +703,14 @@ function randomMoveGhosts(g){
 
 function findNeighbors(x,y){
 	var neighbors = new Array();
+	if (x == 0 && j == 10){
+		neighbors.push([x+1,y]);
+		return neighbors;
+	}
+	if (x == 24 && j == 10){
+		neighbors.push([x-1,y]);
+		return neighbors;
+	}
 	if (board[x+1][y] == "P" || board[x+1][y] == "E" || board[x+1][y] == "F5" || board[x+1][y] == "F15" || board[x+1][y] == "F25")
 		neighbors.push([x+1,y]);
 	if (board[x-1][y] == "P" || board[x-1][y] == "E" || board[x-1][y] == "F5" || board[x-1][y] == "F15" || board[x-1][y] == "F25")
